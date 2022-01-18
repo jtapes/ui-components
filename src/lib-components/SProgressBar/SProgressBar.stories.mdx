@@ -1,0 +1,62 @@
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Preview,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json';
+import SProgressBar from '@/lib-components/SProgressBar/SProgressBar.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/ProgressBar"
+  component={SProgressBar}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    progress: { control: 'range' },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/42Xh2qI3qvq2CRkc2HJlwA/MVP-3-Market-Catalog-%E2%80%A2-Product-Page?node-id=1128%3A88',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Компонент визуально отображающий прогресс от 0 до 100%
+
+<Description of={SProgressBar} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SProgressBar },
+  template:
+    `<s-progress-bar :progress="progress" />`,
+})
+
+<Preview withToolbar withSource="none">
+  <Story name="SProgressBar" args={{ progress: 25.32 }}>
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <s-progress-bar :progress="25.32" />
+  `}
+/>
+
+<ArgsTable of={SProgressBar} />
+

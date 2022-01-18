@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SSlider process 1`] = `
+<div
+  class="vue-slider vue-slider-ltr"
+  max="200"
+  min="100"
+  style="padding: 7px 0px; width: auto; height: 4px;"
+>
+  <div
+    class="vue-slider-rail"
+  >
+    <div
+      class="vue-slider-process"
+      style="height: 100%; top: 0px; left: 0%; width: 50%; transition-property: width,left; transition-duration: 0.5s;"
+    />
+    <div
+      aria-orientation="horizontal"
+      aria-valuemax="200"
+      aria-valuemin="100"
+      aria-valuenow="150"
+      aria-valuetext="150"
+      class="vue-slider-dot vue-slider-dot-hover"
+      role="slider"
+      style="width: 14px; height: 14px; transform: translate(-50%, -50%); top: 50%; left: 50%; transition: left 0.5s;"
+      tabindex="0"
+    >
+      <div
+        class="vue-slider-dot-handle"
+      />
+      <div
+        class="vue-slider-dot-tooltip vue-slider-dot-tooltip-top"
+      >
+        <div
+          class="vue-slider-dot-tooltip-inner vue-slider-dot-tooltip-inner-top"
+        >
+          <span
+            class="vue-slider-dot-tooltip-text"
+          >
+            150
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SSlider range 1`] = `
+<div
+  class="vue-slider vue-slider-ltr"
+  max="200"
+  min="100"
+  style="padding: 7px 0px; width: auto; height: 4px;"
+>
+  <div
+    class="vue-slider-rail"
+  >
+    <div
+      class="vue-slider-process"
+      style="height: 100%; top: 0px; left: 10%; width: 40%; transition-property: width,left; transition-duration: 0.5s;"
+    />
+    <div
+      aria-orientation="horizontal"
+      aria-valuemax="200"
+      aria-valuemin="100"
+      aria-valuenow="110"
+      aria-valuetext="110"
+      class="vue-slider-dot vue-slider-dot-hover"
+      role="slider"
+      style="width: 14px; height: 14px; transform: translate(-50%, -50%); top: 50%; left: 10%; transition: left 0.5s;"
+      tabindex="0"
+    >
+      <div
+        class="vue-slider-dot-handle"
+      />
+      <div
+        class="vue-slider-dot-tooltip vue-slider-dot-tooltip-top"
+      >
+        <div
+          class="vue-slider-dot-tooltip-inner vue-slider-dot-tooltip-inner-top"
+        >
+          <span
+            class="vue-slider-dot-tooltip-text"
+          >
+            110
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-orientation="horizontal"
+      aria-valuemax="200"
+      aria-valuemin="100"
+      aria-valuenow="150"
+      aria-valuetext="150"
+      class="vue-slider-dot vue-slider-dot-hover"
+      role="slider"
+      style="width: 14px; height: 14px; transform: translate(-50%, -50%); top: 50%; left: 50%; transition: left 0.5s;"
+      tabindex="0"
+    >
+      <div
+        class="vue-slider-dot-handle"
+      />
+      <div
+        class="vue-slider-dot-tooltip vue-slider-dot-tooltip-top"
+      >
+        <div
+          class="vue-slider-dot-tooltip-inner vue-slider-dot-tooltip-inner-top"
+        >
+          <span
+            class="vue-slider-dot-tooltip-text"
+          >
+            150
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,24 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-form {
+  .fields-group__block {
+    &--row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &--grid-column {
+      display: grid;
+      grid-auto-flow: column;
+    }
+
+    &--table {
+      display: grid;
+      grid-auto-flow: column;
+    }
+  }
+}

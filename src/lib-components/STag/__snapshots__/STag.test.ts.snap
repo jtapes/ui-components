@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`STag Is Vue snapshot 1`] = `
+<div
+  class="s-tag text-sm color-primary-accent bg-primary s-tag--filled"
+>
+  <span
+    class="s-tag__content"
+  >
+    
+      1213
+    
+  </span>
+</div>
+`;

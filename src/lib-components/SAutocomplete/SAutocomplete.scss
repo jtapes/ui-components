@@ -1,0 +1,133 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-autocomplete {
+  position: relative;
+  border-bottom: 1px solid $color--border;
+  padding-top: 3px;
+  background-color: #fff;
+  transition-property: border;
+  transition-duration: $animate--time;
+
+  .s-content-loader svg {
+    width: 100%;
+    height: 140px;
+  }
+
+  .s-input {
+    border-color: transparent;
+    background-color: transparent;
+
+    &__append {
+      margin-right: 0;
+    }
+
+    &:focus-within {
+      box-shadow: none;
+    }
+
+    &:hover {
+      border-color: transparent;
+    }
+  }
+
+  &:hover {
+    &:not(.s-autocomplete--readonly) {
+      border-color: $color--primary-accent;
+    }
+  }
+
+  &.s-autocomplete--rounded {
+    border: 1px solid $color--border;
+    border-radius: $size--24;
+    padding: 0 $size--4 0 0;
+  }
+
+  &.s-autocomplete--open {
+    border-color: $color--border;
+    border-radius: $size--24 $size--24 0 0;
+    box-shadow: 0 0 0 3px $color--outline;
+
+    .s-input {
+      border-radius: $size--24 $size--24 0 0;
+    }
+
+    &:not(.s-autocomplete--rounded) {
+      margin-right: -$size--16;
+      margin-left: -$size--16;
+      padding-right: $size--16;
+      padding-left: $size--16;
+      width: auto;
+    }
+  }
+
+  &.s-autocomplete--sm {
+    .s-autocomplete-suggestions {
+      &__item {
+        padding: $size--8 $size--20;
+      }
+
+      &__empty {
+        padding: $size--8 $size--20;
+      }
+
+      &__list {
+        max-height: 140px;
+      }
+    }
+  }
+
+  &.s-autocomplete--readonly {
+    &.s-autocomplete--rounded {
+      border-color: $color--background;
+      background-color: $color--background;
+    }
+  }
+
+  &.s-autocomplete--error {
+    border-color: $color--danger;
+
+    &.s-autocomplete--open {
+      border-color: transparent;
+    }
+  }
+}
+
+.s-autocomplete-suggestions {
+  @include z-index(modal);
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  border-top: 1px solid $color--border;
+  border-radius: 0 0 $size--24 $size--24;
+  padding: $size--20 $size--16;
+  box-shadow: 0 3px 0 $color--outline, 3px 3px 0 $color--outline, -3px 3px 0 $color--outline;
+  background-color: $color--white;
+
+  &__list {
+    @include scrollbar;
+
+    overflow-y: auto;
+    margin-right: -$size--12;
+    margin-left: -$size--16;
+    max-height: 160px;
+  }
+
+  &__item {
+    padding: $size--12 $size--16;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color--complimentary-bg-light;
+    }
+  }
+
+  &__empty {
+    padding: $size--12 $size--16;
+  }
+}

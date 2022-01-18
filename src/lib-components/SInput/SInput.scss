@@ -1,0 +1,195 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $color--border;
+  padding-top: $size--16;
+  height: $size--48;
+  transition-property: background-color, color, border, box-shadow;
+  transition-duration: $animate--time;
+
+  &__placeholder {
+    position: absolute;
+    transition: $animate--time;
+
+    &--focused {
+      @include text-xs;
+
+      color: $color--font-muted;
+      transform: translateY(-100%);
+    }
+  }
+
+  &__inner {
+    border: none;
+    width: 100%;
+    color: $color--font;
+
+    &::placeholder {
+      display: block;
+      color: $color--font-secondary;
+    }
+
+    &--prepended {
+      padding-left: $size--8;
+    }
+
+    &--appended {
+      padding-right: $size--8;
+    }
+  }
+
+  &__prepend {
+    display: flex;
+    align-items: center;
+    margin-left: $size--4;
+
+    > .svg-icon {
+      width: $size--40;
+      color: $color--font-secondary;
+    }
+  }
+
+  &__append {
+    display: flex;
+    align-items: center;
+    margin-right: $size--4;
+
+    > .svg-icon {
+      width: $size--40;
+      color: $color--font-secondary;
+    }
+  }
+
+  &__clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 $size--16;
+    color: $color--font-muted;
+    cursor: pointer;
+
+    &:hover {
+      color: $color--primary;
+    }
+  }
+
+  &:focus,
+  &:hover {
+    border-bottom: 1px solid $color--primary;
+  }
+
+  &:focus-within {
+    border-color: transparent;
+    box-shadow: 0 3px $color--outline;
+  }
+
+  &--readonly {
+    pointer-events: none;
+
+    .s-input {
+      &__placeholder {
+        color: $color--font-muted;
+      }
+
+      &__inner {
+        color: $color--font-secondary;
+        background-color: transparent;
+      }
+    }
+
+    &.s-input--rounded {
+      border-color: $color--background;
+      background-color: $color--background;
+
+      .s-input__inner {
+        color: $color--font-secondary;
+        background-color: $color--background;
+      }
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+
+    .s-input {
+      &__placeholder {
+        color: $color--font-muted;
+      }
+
+      &__inner {
+        color: $color--font-muted;
+        background-color: transparent;
+      }
+    }
+
+    &.s-input--rounded {
+      border-color: $color--background;
+      background-color: $color--background;
+
+      .s-input__inner {
+        background-color: $color--background;
+      }
+    }
+  }
+
+  &--rounded {
+    border: 1px solid $color--border;
+    border-radius: $size--24;
+    padding-top: 0;
+    background-color: $color--white;
+
+    .s-input__inner {
+      @include text-sm;
+
+      border-radius: $size--24;
+      padding: $size--12 $size--16;
+    }
+
+    &:focus,
+    &:hover {
+      border: 1px solid $color--primary-accent;
+    }
+
+    &:focus-within {
+      border-color: transparent;
+      box-shadow: 0 0 1px 3px $color--outline;
+    }
+
+    &.s-input--sm {
+      height: $size--40;
+
+      .s-input__inner {
+        padding: $size--8 $size--20;
+      }
+    }
+  }
+
+  &--error {
+    border-color: $color--danger;
+  }
+
+  &--warning {
+    border-color: $color--attention;
+  }
+
+  &--success {
+    border-color: $color--success;
+  }
+
+  &--info {
+    border-color: $color--primary-accent;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}

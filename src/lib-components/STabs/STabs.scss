@@ -1,0 +1,49 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-tabs {
+  &__header {
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid $color--border;
+
+    &-item {
+      position: relative;
+      padding-bottom: $size--12;
+      color: $color--font-secondary;
+      transition: color ease $animate--time;
+      cursor: pointer;
+
+      &:not(:first-child) {
+        margin-left: $size--80;
+      }
+
+      &:not(&.s-tabs__header-item--active):hover {
+        color: $color--danger;
+      }
+
+      &--active {
+        color: $color--primary;
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__slider {
+    position: absolute;
+    bottom: -($size--4);
+    width: 0;
+    height: $size--4;
+    background-color: $color--danger;
+    transition-property: left, width;
+    transition-duration: $animate--time;
+  }
+}

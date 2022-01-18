@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SDatePicker SDatePicker 1`] = `
+<div
+  class="s-date-picker"
+>
+  <div
+    class="mx-datepicker"
+  >
+    <div
+      class="mx-input-wrapper"
+    >
+      <div
+        class="s-input s-input--text s-input--rounded"
+      >
+        <!---->
+         
+        <input
+          class="s-input__inner"
+          placeholder=""
+          type="text"
+        />
+         
+        <!---->
+         
+        <!---->
+         
+        <!---->
+      </div>
+      <i
+        class="mx-icon-calendar"
+      >
+        <svg
+          class="svg-icon icon-24 svg-icon--calendar-24-32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <use
+            href="#calendar-24-32"
+            xlink:href="#calendar-24-32"
+          />
+        </svg>
+      </i>
+    </div>
+    <transition-stub
+      name="mx-zoom-in-down"
+    >
+      <!---->
+    </transition-stub>
+  </div>
+</div>
+`;
+
+exports[`SDatePicker SDatePicker range 1`] = `
+<div
+  class="s-date-picker s-date-picker--range"
+>
+  <div
+    class="mx-datepicker mx-datepicker-range"
+  >
+    <div
+      class="mx-input-wrapper"
+    >
+      <div
+        class="s-input s-input--text s-input--rounded"
+      >
+        <div
+          class="s-input__prepend"
+        >
+          <div
+            class="mr-8 color-font-secondary text-sm"
+          >
+            
+              c
+            
+          </div>
+        </div>
+         
+        <input
+          class="s-input__inner s-input__inner--prepended"
+          placeholder=""
+          type="text"
+        />
+         
+        <!---->
+         
+        <!---->
+         
+        <!---->
+      </div>
+       
+      <div
+        class="s-input s-input--text"
+      >
+        <div
+          class="s-input__prepend"
+        >
+          <div
+            class="mr-8 color-font-secondary text-sm"
+          >
+            
+              по
+            
+          </div>
+        </div>
+         
+        <input
+          class="s-input__inner s-input__inner--prepended"
+          placeholder=""
+          type="text"
+        />
+         
+        <!---->
+         
+        <!---->
+         
+        <!---->
+      </div>
+      <i
+        class="mx-icon-calendar"
+      >
+        <svg
+          class="svg-icon icon-24 svg-icon--calendar-24-32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <use
+            href="#calendar-24-32"
+            xlink:href="#calendar-24-32"
+          />
+        </svg>
+      </i>
+    </div>
+    <transition-stub
+      name="mx-zoom-in-down"
+    >
+      <!---->
+    </transition-stub>
+  </div>
+</div>
+`;

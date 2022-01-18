@@ -1,0 +1,99 @@
+import {action} from '@storybook/addon-actions'
+import {config, withDesign} from 'storybook-addon-designs'
+import {withTests} from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Canvas,
+} from '@storybook/addon-docs/blocks'
+import results from '/.jest-test-results.json';
+import SSlider from '@/lib-components/SSlider/SSlider.vue';
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Slider"
+  component={SSlider}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    value: {
+      control: 'array',
+      defaultValue: [10, 30],
+      description: 'Положение контроллера',
+    },
+    max: {
+      control: 'number',
+      defaultValue: 100,
+      description: 'Максимальная длина',
+      type: 'Number'
+    },
+    min: {
+      control: 'number',
+      defaultValue: 0,
+      description: 'Минимальная длина',
+      type: 'Number'
+    },
+    tooltip: {
+      control: 'text',
+      defaultValue: 'none',
+      description: 'Поведение маркеров',
+      type: 'String',
+    },
+    enableCross: {
+      control: 'boolean',
+      description: 'Перемещение через контроллеры',
+      defaultValue: false,
+      type: 'Boolean'
+    },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/42Xh2qI3qvq2CRkc2HJlwA/MVP-3-Market-Catalog-%E2%80%A2-Product-Page?node-id=1902%3A1902',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+export const Template = (args, {argTypes}) => ({
+  props: Object.keys(argTypes),
+  components: {SSlider},
+  template: `<s-slider style="max-width: 200px;" class="mt-24" :value="currentValue" @change="change" :tooltip="tooltip" :max="max" :min="min" :enable-cross="enableCross" />`,
+  data() {
+    return {
+      currentValue: this.value
+    }
+  },
+  watch: {
+    value(v) {
+      this.currentValue = v
+    }
+  },
+  methods: {
+    change(value) {
+      action('change')(value)
+      this.currentValue = value
+    },
+  },
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="Range Slider">
+    {Template.bind({})}
+  </Story>
+  <Story name="Slider" args={{ value: 30, tooltip: 'active' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+<Description of={SSlider} />
+<ArgsTable of={SSlider} />
+<Source code={`<s-slider :value="[10, 30]" />`} />
+

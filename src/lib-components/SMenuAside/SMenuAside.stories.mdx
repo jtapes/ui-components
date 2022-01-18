@@ -1,0 +1,177 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Canvas,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json';
+import SMenuAside from '@/lib-components/SMenuAside/SMenuAside.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/MenuAside"
+  component={SMenuAside}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    items: {
+      control: 'object',
+      defaultValue: {
+        header: {
+          name: 'Предыдущая страница',
+          url: '/',
+        },
+        menu: [
+          [
+            {
+              name: 'Главная',
+              iconAppend: 'burger',
+            },
+            {
+              name: 'Заказы',
+              active: true,
+              child: {
+                menu: [
+                  [
+                    {
+                      name: 'О компании',
+                    },
+                    {
+                      name: 'Клиентам',
+                      active: true,
+                      child: {
+                        menu: [
+                          [
+                            {
+                              name: 'Стратегия устойчивого развития',
+                              child: {
+                                menu: [
+                                  [
+                                    {
+                                      name: 'Экологические проекты',
+                                      child: {
+                                        menu: [
+                                          [
+                                            {
+                                              name: 'Изменение климата',
+                                            },
+                                            {
+                                              name: 'Биоразнообразие',
+                                            }
+                                          ]
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      name: 'Инвесторам',
+                      child: {
+                        menu: [
+                          [
+                            {
+                              name: 'Устойчивое развитие',
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  ]
+                ]
+              },
+            },
+            {
+              name: 'Финансы',
+              child: {
+                menu: [
+                  [
+                    {
+                      name: 'Поддержка',
+                    },
+                  ]
+                ]
+              },
+            },
+            {
+              name: 'Программа лояльности',
+              iconPrepend: 'burger'
+            },
+            {
+              name: 'Профиль',
+            },
+            {
+              name: 'Компания',
+              url: '/',
+              type: 'link'
+            },
+          ]
+        ],
+        staticBlockMenu: [
+          {
+            name: 'Склад',
+            url: '/',
+            type: 'link'
+          },
+          {
+            name: 'Аукционы',
+            url: '/',
+            type: 'link'
+          },
+          {
+            name: 'Производство',
+            url: '/',
+            type: 'link'
+          }
+        ]
+      }
+    },
+    logo: {
+      control: 'string',
+      defaultValue: 'logo'
+    },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url: 'https://www.figma.com/file/48lgW7NE3JB5dVC0Mec5o0/MVP-3-Account?node-id=41%3A1243',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+export const Template = (args, {argTypes}) => ({
+  props: Object.keys(argTypes),
+  components: {SMenuAside},
+  template: `<s-menu-aside style="position: fixed" :items='items' @element-click="element" @header-click="header" :logo="logo" />`,
+  methods: {
+    element(element) {
+      action('element')(element)
+    },
+    header(element) {
+      action('header')(element)
+    },
+  },
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="SMenuAside">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Description of={SMenuAside} />
+<ArgsTable of={SMenuAside} />
+<Source code={`<s-pagination :items="object" :logo="/" />`} />

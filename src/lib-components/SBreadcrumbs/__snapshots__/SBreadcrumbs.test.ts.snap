@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SBreadcrumbs Is Vue snapshot 1`] = `
+<div
+  class="s-breadcrumbs text-sm color-font-secondary"
+>
+  <div
+    class="s-breadcrumbs__item"
+  >
+    <a
+      class="link color-font-secondary"
+      href="catalog"
+    >
+      
+            Каталог
+          
+    </a>
+  </div>
+   
+  <div
+    class="s-breadcrumbs__separator"
+  >
+    <svg-icon-stub
+      class="icon-16"
+      name="arrow-16"
+    />
+  </div>
+  <div
+    class="s-breadcrumbs__item"
+  >
+    <a
+      class="link color-font-secondary"
+      href="sortovoy-prokat"
+    >
+      
+            Сортовой прокат
+          
+    </a>
+  </div>
+   
+  <div
+    class="s-breadcrumbs__separator"
+  >
+    <svg-icon-stub
+      class="icon-16"
+      name="arrow-16"
+    />
+  </div>
+  <div
+    class="s-breadcrumbs__item"
+  >
+    <span>
+      
+        Лист горячетканый горячетканый горячетка...
+      
+    </span>
+  </div>
+   
+  <!---->
+</div>
+`;

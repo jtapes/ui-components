@@ -1,0 +1,144 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="Модути сторы проэкта"/>
+
+# Модули
+#
+#
+## Пример создания модуля
+```js
+import {
+  Module,
+  VuexModule,
+  VuexMutation,
+  VuexAction,
+} from 'nuxt-property-decorator'
+
+export type TextStateType = string
+
+@Module({
+  namespaced: true,
+  name: 'testModule',
+  stateFactory: true,
+})
+export default class TestModule extends VuexModule {
+  text: TextStateType = 'before update'
+
+  /** так лучше не изменять state использовать мутации в action как в apiText, ну опять же от ситуации **/
+  // @MutationAction({ mutate: ['text'] })
+  // async apiText(value: string) {
+  //   return {
+  //     text: value,
+  //   }
+  // }
+
+  @VuexAction({ commit: 'setText' })
+  apiText(text: string): Promise<TextStateType> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(text)
+      }, 3000)
+    })
+  }
+
+  @VuexMutation
+  setText(val: string): void {
+    this.text = val
+  }
+
+  get getText(): TextStateType {
+    return 'текст - ' + this.text
+  }
+}
+```
+
+## Пример использования
+```js
+<template>
+  <div class="s-container">
+    <h1>Главная страница</h1>
+    {{ testModule.getText }}
+  </div>
+</template>
+<script lang="ts">
+import { Vue, Component, getModule } from 'nuxt-property-decorator'
+import { setModule } from '~/store'
+import Test from '~/store/modules/testModule'
+
+@Component({
+  asyncData() {
+    // setModule('test')
+  },
+})
+export default class Index extends Vue {
+  testModule!: Test
+
+  created() {
+    /** created отрабатывает как на клиенте так и на сервере раньше чем fetch, поэтому регистрацию стор выполнять в нем (иначе на клиент не заедут гетеры и мутации с экшенами)
+     * если выполнять поключение только на стороне сервера, то на клиент не заедут гетеры и мутации с экшенами, но state будет
+     * также если изменить state на сервере то на клиент данные придут тут все хорошо, а при подлючении модуля повторно - на клиенте, данные в стейте останутся неизменны
+     * но появятся гетеры  мутации и экшены
+     *
+     * в общем если на клиенте не нужны гетеры  мутации и экшены, а стору достаточно использовать только на ssr, то можно обойтись
+     * подлючением модуля только в asyncData или fetch, это полезно чтобы не занимать лишнюю память в браузере
+     **/
+    // 2 варианта динамического подключения модуля по классу или имени файла, лучше использовать по имени класса
+    // setModule('testModule')
+    setModule(Test)
+
+    this.testModule = getModule(Test, this.$store)
+  }
+
+  fetch() {
+    this.testModule.setText('asd')
+  }
+
+  async mounted() {
+    await this.testModule.apiText('api asd')
+    console.log(this.testModule.getText)
+  }
+}
+</script>
+```
+
+## Пример теста
+```js
+import { render } from '@testing-library/vue'
+import { createLocalVue } from '@vue/test-utils'
+import Skeleton from 'vue-loading-skeleton'
+import Vuex from 'vuex'
+import { getModule } from 'vuex-module-decorators'
+import Index from '../index.vue'
+import mask from '~/plugins/directives/mask'
+import loader from '~/plugins/directives/loader'
+import { store } from '~/store/index'
+import ScreenVariables from '~/plugins/ScreenVariables'
+import Test from '~/store/modules/testModule'
+const getModuleMock = getModule as jest.MockedFunction<typeof getModule>
+jest.mock('vuex-module-decorators')
+describe('ListingPage', () => {
+  const localVue = createLocalVue()
+  localVue.use(mask)
+  localVue.use(loader)
+  localVue.use(ScreenVariables)
+  localVue.use(Skeleton)
+  beforeEach(() => {
+    getModuleMock.mockImplementation((moduleClass: any) => {
+      console.log(Test === moduleClass)
+      return { getText: '222222', apiText: () => Promise.resolve() } as any
+    })
+  })
+  test('change page when click on pagination', () => {
+    // TODO c render тест перестает работать
+    const wrapper = render(Index, {
+      store: new Vuex.Store(store),
+      localVue,
+      stubs: {
+        'nuxt-link': true,
+        'client-only': true,
+      },
+    })
+    console.log(wrapper.html())
+  })
+})
+````

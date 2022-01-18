@@ -1,0 +1,91 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Props,
+  Preview,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json';
+import SLoader from '@/lib-components/SLoader/SLoader.vue'
+import Vue from 'vue'
+import loader from '@/plugins/directives/loader.ts'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Loader"
+  component={SLoader}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    loading: { control: 'boolean' },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/42Xh2qI3qvq2CRkc2HJlwA/MVP-3-Market-Catalog-%E2%80%A2-Product-Page?node-id=1128%3A88',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Loader
+
+<Description of={SLoader} />
+
+export const Template = (args, { argTypes }) => {
+  Vue.use(loader)
+  return {
+    props: Object.keys(argTypes),
+    components: {SLoader},
+    template:
+      `<div style="width: 100px; height: 100px;" v-loading="loading">
+      Контент
+    </div>`,
+  }
+}
+
+export const TemplateGrouped = (args, { argTypes }) => {
+  Vue.use(loader)
+  return {
+    props: Object.keys(argTypes),
+    components: { SLoader },
+    template:
+      `<div style="width: 500px; height: 500px;" v-loading.group="{ loading, text: 'Формирование договора..' }">
+        Контент
+    </div>`,
+  }
+}
+
+<Preview withToolbar withSource="none">
+  <Story name="SLoader" args={{ loading: true }}>
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+
+<Preview withToolbar withSource="none">
+  <Story name="SLoader grouped" args={{ loading: true }}>
+    {TemplateGrouped.bind({})}
+  </Story>
+</Preview>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <div style="width: 100px; height: 100px;" v-loading="loading">
+        Контент
+    </div>
+  `}
+/>
+
+<ArgsTable of={SLoader} />

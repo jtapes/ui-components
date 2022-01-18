@@ -1,0 +1,17 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-sort {
+  display: flex;
+
+  &__icon {
+    transition: transform $animate--time;
+
+    &--desc {
+      transform: rotateX(180deg);
+    }
+  }
+}

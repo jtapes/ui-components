@@ -1,0 +1,87 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Canvas,
+} from '@storybook/addon-docs'
+import SCheckbox from '@/lib-components/SCheckbox/SCheckbox.vue'
+import results from '/.jest-test-results.json';
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Checkbox"
+  component={SCheckbox}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    label: { control: 'text' },
+    state: {
+      control: { type: 'select' },
+      options: [
+        'disabled',
+        'error',
+        'default'
+      ]
+    }
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-Market-UI-Kit?node-id=846%3A1100',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Checkbox
+
+<Description of={SCheckbox} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SCheckbox },
+  template:
+    `<div class="d-f fd-c">
+      <SCheckbox v-model="selectedValue" :label="label" :state="state" @change="handleChange"></SCheckbox>
+      <SCheckbox v-model="selectedValue2">
+        С <span class="link link--underline">типовыми условиями договора</span> ознакомлен
+      </SCheckbox>
+</div>
+`,
+	data() {
+		return {
+			selectedValue: null,
+      selectedValue2: null
+		}
+	},
+	methods: {
+		handleChange() {
+			action('change')()
+		}
+	}
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="SCheckbox" args={{ label: 'Checkbox' }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <s-checkbox v-model="selectedValue" :label="Checkbox"/>
+  `}
+/>
+
+<ArgsTable of={SCheckbox} />

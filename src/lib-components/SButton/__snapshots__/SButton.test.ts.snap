@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SButton Is Vue snapshot 1`] = `
+<button
+  class="s-button s-button--default s-button--md s-button--rounded"
+  type="button"
+>
+  <!---->
+   
+  <div
+    class="s-button__content"
+  />
+   
+  <!---->
+   
+  <!---->
+</button>
+`;

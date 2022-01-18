@@ -1,0 +1,104 @@
+import { Meta, Canvas, Story, Source } from '@storybook/addon-docs'
+import SvgIcon from '@/lib-components/SvgIcon/SvgIcon.vue'
+import { SvgMdxArgType } from '@/storybook/components/icon/SvgIconArgType'
+
+<Meta title="Иконки проекта" />
+
+export const Template = () => ({
+  components: { SvgIcon },
+  template: `
+    <div style="display: flex; padding: 40px">
+      <div>
+        <div style="color: #7B61FF">icon/32px</div>
+        <div style="display: flex; flex-direction: column; justify-content: center; border: 1px dashed #7B61FF; padding: 12px">
+          <div style="margin-bottom: 20px; display: flex; align-items: center; color: #002F6C" v-for="item in icon32">
+            <svg-icon :name="item" class="icon-32" />
+            <span style="margin-left: 30px">{{item}}</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-left: 60px">
+        <div style="color: #7B61FF">icon/16px</div>
+        <div style="display: flex; flex-direction: column; justify-content: center; border: 1px dashed #7B61FF; padding: 12px">
+          <div style="margin-bottom: 20px; display: flex; align-items: center; color: #002F6C"  v-for="item in icon16">
+            <svg-icon :name="item" class="icon-16"/>
+            <span style="margin-left: 30px">{{item}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  data() {
+    return {
+      icon32: [
+        'plus-24-32',
+        'minus-24-32',
+        'arrow-24-32',
+        'search-24-32',
+        'profile-24-32',
+        'notification-24-32',
+        'heart-24-32',
+        'cart-24-32',
+        'times-24-32',
+        'phone-24-32',
+        'dropdown-24-32',
+        'close-24-32',
+        'burger-24-32',
+        'checked-24-32',
+        'link-blank-24-32',
+        'download-24-32',
+        'filter-24-32',
+        'filter-v2-24-32',
+        'sort-24-32',
+        'calendar-24-32',
+        'link-24-32',
+        'edit-24-32'
+      ],
+      icon16: [
+        'plus-16',
+        'checked-16',
+        'location-16',
+        'link-blank-16',
+        'arrow-16',
+        'diameter-16',
+        'length-16',
+        'sort-16',
+        'question-16',
+        'thickness-16',
+        'width-16',
+        'color-16',
+        'thickness-cover-16',
+        'info-16',
+        'minus-16',
+        'currency-16',
+        'error-16',
+        'edit-16',
+        'filter-v2-16'
+      ]
+    }
+  },
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="Иконки проекта">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Пример
+
+<Source language="html" code={`<svg-icon name="plus-24-32" />`}/>
+
+<div>
+  <div style={{padding: '10px 0', marginBottom: '15px'}}>
+    <span style={{color: '#111111', fontWeight: 700, fontSize: '20px'}}>Иконки загружаются в виде SVG-файлов в папку, которая находится по пути: </span>
+    <span style={{color: '#606060', fontWeight: 600, fontSize: '16px', marginLeft: '20px'}}>/assets/icons-svg</span>
+  </div>
+  <div style={{padding: '10px 0', marginBottom: '15px'}}>
+    <span style={{color: '#111111', fontWeight: 700, fontSize: '20px'}}>Компонент svg-icon можно использовать внутри любого компонента</span>
+    <div style={{color: '#111111', fontWeight: 700, margin: '20px 0', padding: '0 30px'}}>Пример:</div>
+    <div style={{backgroundColor: '#dedede', borderRadius: '4px', padding: '30px', margin: '15px 30px'}}>
+      &lt;svg-icon name="&lt;icon-name&gt;" /&gt; <span style={{color: '#909090', marginLeft: '40px'}}>// где &lt;icon-name&gt; — название файла с иконкой</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Props,
+  Canvas,
+} from '@storybook/addon-docs'
+import SAutocomplete from '@/lib-components/SAutocomplete/SAutocomplete.vue'
+import SvgIcon from '@/lib-components/SvgIcon/SvgIcon.vue'
+import SButton from '@/lib-components/SButton/SButton.vue'
+import { SvgMdxArgType } from '@/storybook/components/icon/SvgIconArgType'
+
+import results from '/.jest-test-results.json';
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Autocomplete"
+  component={SAutocomplete}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    items: {
+      control: 'array',
+      defaultValue: [
+        { text: 'Значение 1', value: 1 },
+        { text: 'Значение 2', value: 2 },
+        { text: 'Значение 3', value: 3 },
+        { text: 'Значение 4', value: 4 },
+        { text: 'Значение 5', value: 5 },
+        { text: 'Значение 6', value: 6 },
+        { text: 'Значение 7', value: 7 },
+        { text: 'Значение 8', value: 8 }
+      ]
+    },
+    size: {
+      options: [null, 'sm'],
+      control: { type: 'select' },
+    },
+    rounded: { control: 'boolean', defaultValue: true },
+    loading: { control: 'boolean', defaultValue: false },
+    icon: SvgMdxArgType,
+    appendToBody: { control: 'boolean', defaultValue: false },
+    clearable: { control: 'boolean', defaultValue: false },
+    iconHidden: { control: 'boolean', defaultValue: false },
+    state: {
+      control: { type: 'select' },
+      options: [
+        'readonly',
+        'error',
+      ]
+    },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-Market-UI-Kit?node-id=846%3A1100',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# SAutocomplete
+
+<Description of={SAutocomplete} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SAutocomplete, SvgIcon, SButton },
+  template:
+    `<div style="padding: 0 16px; background-color: #eee">
+      <SAutocomplete :items="items" :size="size" :rounded="rounded" :loading="loading" placeholder="Введите"
+:appendToBody="appendToBody" :clearable="clearable" :iconHidden="iconHidden" v-model="txt" :state="state" placeholder="Placeholder">
+<template #icon><s-button mode="search" size="sm" class="ml-8"circle><svg-icon name="search-24-32" class="icon-32"></svg-icon></s-button></template>
+    </SAutocomplete>
+</div>`,
+  data() {
+  return {
+    txt: ''
+  }}
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="SAutocomplete" args={{  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Дефолтный пример
+
+<Source
+  language="html"
+  code={`
+    <SAutocomplete :items="items" :size="size" :rounded="rounded" :loading="loading" placeholder="Поиск"
+:appendToBody="appendToBody" :clearable="clearable" :iconHidden="iconHidden">
+      <template #icon v-if="icon"><svg-icon :name="icon" class="icon-32" /></template>
+</SAutocomplete>
+  `}
+/>
+
+<ArgsTable of={SAutocomplete} />

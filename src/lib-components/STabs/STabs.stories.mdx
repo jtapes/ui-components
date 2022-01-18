@@ -1,0 +1,82 @@
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Preview,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json';
+import STabs from '@/lib-components/STabs/STabs.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Tabs"
+  component={STabs}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    tabs: { control: 'array', defaultValue: ['Пункт 1', 'Пункт 2', 'Пункт 3'] },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-Market-UI-Kit?node-id=3019%3A1571',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Tabs
+
+<Description of={STabs} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { STabs },
+  template:
+    `<s-tabs v-model="activeTab" :tabs="tabs">
+         <template #tab-1>
+             <span class="mt-40">111</span>
+         </template>
+         <template #tab-2>
+             <span>222</span>
+         </template>
+         <template #tab-3>
+             <span>333</span>
+         </template>
+     </s-tabs>`,
+  data: () => ({
+    activeTab: 'Пункт 1',
+  })
+})
+
+<Preview withToolbar withSource="none">
+  <Story name="STabs">
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+## Пример
+<Source
+  language="html"
+  code={`
+<s-tabs :tabs="tabs">
+  <template #tab-1>
+    <span>123</span>
+  </template>
+  <template #tab-3>
+    <span class="mt-40">321</span>
+  </template>
+</s-tabs>
+  `}
+/>
+
+<div>Слоты именуются, как: tab-n, где "n" — это номер таба (начинается с 1).</div>
+
+<ArgsTable of={STabs} />

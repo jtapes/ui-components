@@ -1,0 +1,110 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+$page--padding: $size--16 !default;
+
+.s-pagination {
+  display: flex;
+
+  &__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0 $page--padding;
+    height: $size--48;
+    color: $color--font;
+  }
+
+  &__page {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0 $page--padding;
+    height: $size--48;
+    color: $color--font;
+    cursor: pointer;
+
+    &:hover {
+      color: $color--danger;
+      transition: color ease $animate--time;
+    }
+
+    &:first-child {
+      padding-left: 0;
+
+      &::before {
+        left: calc(50% - #{$page--padding / 2});
+        width: calc(100% - #{$page--padding});
+      }
+    }
+
+    &:last-child {
+      padding-right: 0;
+
+      &::before {
+        left: calc(50% + #{$page--padding / 2});
+        width: calc(100% - #{$page--padding});
+      }
+    }
+
+    &--active {
+      cursor: default;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: $size--4;
+        display: block;
+        width: calc(100% - #{$size--32});
+        height: $size--4;
+        background: $color--danger;
+        transform: translateX(-50%);
+      }
+
+      &:hover {
+        color: $color--font;
+      }
+    }
+
+    &--one::before {
+      /* stylelint-disable declaration-no-important */
+      /* по дизайну нужно подсвечивать элемент активным когда он один */
+      left: 50% !important;
+      width: 100% !important;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $color--border;
+    border-radius: 50%;
+    width: $size--48;
+    height: $size--48;
+    cursor: pointer;
+
+    &:hover {
+      border-color: transparent;
+      color: $color--primary;
+      background: $color--complimentary-bg-light;
+      transition: all ease $animate--time;
+    }
+
+    &--next {
+      transform: rotate(-90deg);
+    }
+
+    &--prev {
+      transform: rotate(90deg);
+    }
+  }
+}

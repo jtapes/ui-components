@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SCheckbox Is Vue snapshot 1`] = `
+<label
+  class="s-checkbox text-sm s-checkbox--default s-checkbox--checked"
+>
+  <div
+    class="s-checkbox__input"
+  >
+    <div
+      class="s-checkbox__inner"
+    >
+      <svg-icon-stub
+        class="icon-16"
+        name="checked-16"
+      />
+    </div>
+     
+    <input
+      aria-hidden="false"
+      class="s-checkbox__original"
+      type="checkbox"
+      value=""
+    />
+  </div>
+   
+  <!---->
+</label>
+`;

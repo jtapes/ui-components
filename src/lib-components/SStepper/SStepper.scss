@@ -1,0 +1,62 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+$stepper--animate: 0.75s !default;
+
+.s-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__title {
+      transition: color $stepper--animate;
+    }
+
+    &__indicator {
+      border-radius: 50%;
+      width: $size--16;
+      height: $size--16;
+      transition: background-color $stepper--animate;
+    }
+
+    &__divider {
+      position: absolute;
+      left: calc(50% + #{$size--8});
+      bottom: $size--8 - 1;
+      width: 100%;
+      height: 1px;
+
+      &--filled & {
+        &--color {
+          width: 100%;
+        }
+      }
+
+      &--color {
+        width: 0;
+        height: 100%;
+        transition: width $stepper--animate;
+      }
+    }
+
+    &:last-child {
+      .s-stepper-item__divider {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SStepper Is Vue snapshot 1`] = `
+<div
+  class="s-stepper"
+>
+  <div
+    class="s-stepper-item"
+    style="flex-basis: 25%;"
+  >
+    <div
+      class="s-stepper-item__inner"
+    >
+      <span
+        class="s-stepper-item__title bold mb-16 color-primary"
+      >
+        
+          Корзина
+        
+      </span>
+       
+      <div
+        class="s-stepper-item__indicator bg-primary"
+      />
+    </div>
+     
+    <div
+      class="s-stepper-item__divider bg-border s-stepper-item__divider--filled"
+    >
+      <div
+        class="s-stepper-item__divider--color bg-primary"
+      />
+    </div>
+  </div>
+  <div
+    class="s-stepper-item"
+    style="flex-basis: 25%;"
+  >
+    <div
+      class="s-stepper-item__inner"
+    >
+      <span
+        class="s-stepper-item__title bold mb-16 color-font"
+      >
+        
+          Договор
+        
+      </span>
+       
+      <div
+        class="s-stepper-item__indicator bg-danger"
+      />
+    </div>
+     
+    <div
+      class="s-stepper-item__divider bg-border"
+    >
+      <div
+        class="s-stepper-item__divider--color bg-primary"
+      />
+    </div>
+  </div>
+  <div
+    class="s-stepper-item"
+    style="flex-basis: 25%;"
+  >
+    <div
+      class="s-stepper-item__inner"
+    >
+      <span
+        class="s-stepper-item__title bold mb-16 color-font-secondary"
+      >
+        
+          Получение
+        
+      </span>
+       
+      <div
+        class="s-stepper-item__indicator bg-border"
+      />
+    </div>
+     
+    <div
+      class="s-stepper-item__divider bg-border"
+    >
+      <div
+        class="s-stepper-item__divider--color bg-primary"
+      />
+    </div>
+  </div>
+  <div
+    class="s-stepper-item"
+    style="flex-basis: 25%;"
+  >
+    <div
+      class="s-stepper-item__inner"
+    >
+      <span
+        class="s-stepper-item__title bold mb-16 color-font-secondary"
+      >
+        
+          Оплата
+        
+      </span>
+       
+      <div
+        class="s-stepper-item__indicator bg-border"
+      />
+    </div>
+     
+    <div
+      class="s-stepper-item__divider bg-border"
+    >
+      <div
+        class="s-stepper-item__divider--color bg-primary"
+      />
+    </div>
+  </div>
+</div>
+`;

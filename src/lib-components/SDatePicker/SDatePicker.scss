@@ -1,0 +1,392 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+$default-color: $color--font;
+$primary-color: $color--primary;
+
+@import '~vue2-datepicker/scss/var.scss';
+@import '~vue2-datepicker/scss/icon.scss';
+@import '~vue2-datepicker/scss/btn.scss';
+@import '~vue2-datepicker/scss/scrollbar.scss';
+@import '~vue2-datepicker/scss/animation.scss';
+
+$namespace: 'mx';
+
+/* prettier-ignore */
+.#{$namespace}-input-wrapper .s-input--readonly.s-input--rounded .s-input__inner {
+  color: $color--font;
+  background-color: $color--white;
+}
+
+.s-date-picker {
+  width: 100%;
+  cursor: pointer;
+
+  &.s-date-picker--focused {
+    &:not(.s-date-picker--range) {
+      .s-input {
+        border-color: transparent;
+        border-radius: $size--24 $size--24 0 0;
+        box-shadow: 0 0 0 3px $color--outline;
+      }
+    }
+
+    &.s-date-picker--range {
+      .#{$namespace}-input-wrapper {
+        border-radius: $size--24 $size--24 0 0;
+        box-shadow: 0 0 0 3px $color--outline;
+
+        &:hover {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+
+  &.s-date-picker--range {
+    .#{$namespace}-input-wrapper {
+      display: flex;
+      border-radius: $size--24;
+      padding: 0 $size--16;
+      box-shadow: inset 0 0 0 1px $color--border;
+      background-color: $color--white;
+
+      &:hover {
+        border-color: $color--primary-accent;
+      }
+    }
+
+    .s-input {
+      border-color: transparent;
+      padding-top: 0;
+      width: 112px;
+      background: transparent;
+
+      &__prepend {
+        white-space: nowrap;
+      }
+
+      &__inner {
+        @include text-sm;
+
+        padding: 0;
+      }
+
+      &:focus-within {
+        box-shadow: none;
+      }
+
+      &:hover {
+        box-shadow: none;
+      }
+
+      &.s-input--focused {
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.#{$namespace}-datepicker {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  svg {
+    vertical-align: -0.15em;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+  }
+}
+
+.#{$namespace}-datepicker-inline {
+  width: auto;
+}
+
+.#{$namespace}-input-wrapper {
+  position: relative;
+}
+
+.#{$namespace}-icon-calendar {
+  position: absolute;
+  right: $size--12;
+  top: 50%;
+  vertical-align: middle;
+  font-size: $size--32;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.5);
+  transform: translateY(-50%);
+}
+
+.#{$namespace}-datepicker-main {
+  color: $default-color;
+  background-color: #fff;
+}
+
+.#{$namespace}-datepicker-popup {
+  position: absolute;
+  z-index: $popup-z-index;
+  margin-top: -3px;
+  border-top: 1px solid $border-color;
+  border-radius: 0 0 $size--24 $size--24;
+  box-shadow: 0 3px 0 #99b3d8, 3px 3px 0 #99b3d8, -3px 3px 0 #99b3d8;
+
+  .#{$namespace}-calendar-panel-date + .#{$namespace}-calendar-panel-date {
+    display: none;
+  }
+}
+
+.#{$namespace}-datepicker-sidebar {
+  float: left;
+  overflow: auto;
+  padding: $size--8;
+  width: $sidebar-margin-left;
+  box-sizing: border-box;
+}
+
+.#{$namespace}-datepicker-sidebar + .#{$namespace}-datepicker-content {
+  margin-left: $sidebar-margin-left;
+  border-left: 1px solid $border-color;
+}
+
+.#{$namespace}-datepicker-body {
+  position: relative;
+  user-select: none;
+}
+
+.#{$namespace}-btn-shortcut {
+  display: block;
+  padding: 0 $size--8;
+  line-height: $size--24;
+}
+
+.#{$namespace}-range-wrapper {
+  display: flex;
+}
+
+.#{$namespace}-datepicker-header {
+  border-bottom: 1px solid $border-color;
+  padding: $size--8;
+}
+
+.#{$namespace}-datepicker-footer {
+  border-top: 1px solid $border-color;
+  padding: $size--8;
+  text-align: right;
+}
+
+.#{$namespace}-calendar {
+  padding: $size--16 $size--8;
+  box-sizing: border-box;
+}
+
+.#{$namespace}-calendar-header {
+  overflow: hidden;
+  padding: 0 $size--8;
+  height: $size--32;
+  box-sizing: border-box;
+  line-height: $size--32;
+  text-align: center;
+}
+
+.#{$namespace}-btn-icon-left,
+.#{$namespace}-btn-icon-double-left {
+  float: left;
+}
+
+.#{$namespace}-btn-icon-right,
+.#{$namespace}-btn-icon-double-right {
+  float: right;
+}
+
+.#{$namespace}-icon-right, .#{$namespace}-icon-left {
+  &::before {
+    border: 0;
+    width: $size--16;
+    height: $size--16;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAARVBMVEUAAAAAMHAAMGgAMHAAMGoALW0AMGwALmsAMGsALW0AMG0ALmwAMGwALm0AL2sAL20AL2wAL2wAL2wAL2sAL20AL2wAL2wfSl78AAAAFnRSTlMAECAgMD9AX19gYH+Aj5+fr7/P39/vQLAKjwAAALJJREFUeNrt04USxCAQA9CFunv//1OvLeHG2Jmca8ZfqsDKp+afrrYXebSuU005Uq5bppx2GTZHRbmYavYV5VuianUZYsJd1aFqre4vucUvTG0p35KMfmE431JgLXvSz9XAOSoUhCNa8Tk3mBoF5RsvWD7OywUHh/PUz0xGeTo4XirDeBRi3Y0/9Q1YdyyB48GK7gFOhPESSzBuzHgfXDHdpcISsC5mAXO+pWutaP6s/HMCkhsjx+D0EuYAAAAASUVORK5CYII=');
+    background-size: cover;
+  }
+}
+
+.#{$namespace}-icon-right {
+  &::before {
+    left: 0;
+    transform: none;
+  }
+}
+
+.#{$namespace}-icon-left {
+  &::before {
+    transform: rotate(180deg);
+  }
+}
+
+.#{$namespace}-icon-double-right, .#{$namespace}-icon-double-left {
+  &::before {
+    border: 0;
+    width: $size--16;
+    height: $size--16;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAUVBMVEUAAAAAMHAAMGgAMHAALW0AMGwALWwAMGwALmsAMGsALW0AMG0ALmwAMGsALmwAMGwALm0AMGwAL2sAL20AL2wAL2wAL2wAL2sAL20AL2wAL2zVb8n+AAAAGnRSTlMAECAgP0BQUF9fYGBvcH+Aj5Cfn6+/z9/f70DZzEIAAACTSURBVHja7ZQ1AsNQDEPtMDN93f+eRXe3plLerBcwyUdyMk8RlY8B9IxS48be+4UVeCil26gOWuloJe7wZI3cymzK9GnKYn/fu5XE2rII2ZZVCCpWkO8XdKQE7QMYoQ02Hb54/lqMzBVPbSxCw8U7pUZ7UKI0wBJR8TXxXTIuLptVshAn3bM0xOgEq6SbYVA5+QKuzuAVSLY9ek8AAAAASUVORK5CYII=');
+    background-size: cover;
+    transform: none;
+  }
+
+  &::after {
+    display: none;
+  }
+}
+
+.#{$namespace}-icon-double-right {
+  &::before {
+    transform: none;
+  }
+}
+
+.#{$namespace}-icon-double-left {
+  &::before {
+    transform: rotate(180deg);
+  }
+}
+
+.#{$namespace}-calendar-header-label {
+  @include text-sm;
+}
+
+.#{$namespace}-calendar-decade-separator {
+  margin: 0 $size--4;
+
+  &::after {
+    content: '~';
+  }
+}
+
+.#{$namespace}-calendar-content {
+  position: relative;
+  height: 224px;
+  box-sizing: border-box;
+
+  .cell {
+    cursor: pointer;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      width: $size--32;
+      height: $size--32;
+      min-width: $size--32;
+      min-height: $size--32;
+    }
+
+    &:hover {
+      border-radius: $size--4;
+      color: $calendar-hover-color;
+      background-color: $calendar-hover-background-color;
+    }
+
+    &.active {
+      border-radius: $size--4;
+      color: $calendar-active-color;
+      background-color: $calendar-active-background-color;
+    }
+
+    &.in-range,
+    &.hover-in-range {
+      color: $calendar-in-range-color;
+      background-color: rgba($color--complimentary-bg, 0.5);
+    }
+
+    &.disabled {
+      color: $disabled-color;
+      background-color: $disabled-background-color;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.#{$namespace}-calendar-week-mode {
+  .#{$namespace}-date-row {
+    cursor: pointer;
+
+    .cell {
+      &:hover {
+        color: inherit;
+        background-color: transparent;
+      }
+
+      &.active {
+        color: inherit;
+        background-color: transparent;
+      }
+    }
+
+    &:hover {
+      background-color: $calendar-hover-background-color;
+    }
+
+    &.#{$namespace}-active-week {
+      background-color: $calendar-in-range-background-color;
+    }
+  }
+}
+
+.#{$namespace}-week-number {
+  opacity: 0.5;
+}
+
+.#{$namespace}-table {
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+
+  th {
+    vertical-align: middle;
+    padding: 0;
+    font-weight: 500;
+  }
+
+  td {
+    vertical-align: middle;
+    padding: 0;
+  }
+}
+
+.#{$namespace}-table-date {
+  td,
+  th {
+    @include text-xs;
+
+    height: $size--32;
+  }
+
+  .today {
+    color: $today-color;
+  }
+
+  .cell.not-current-month {
+    color: #ccc;
+    background: none; // cover the in-range style
+  }
+}
+
+.#{$namespace}-datepicker-range {
+  input {
+    padding-left: $size--32;
+  }
+
+  .#{$namespace}-calendar + .#{$namespace}-calendar {
+    display: none;
+  }
+}

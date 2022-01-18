@@ -1,0 +1,23 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-breadcrumbs {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+
+  &__item {
+    white-space: nowrap;
+  }
+
+  &__separator {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 $size--12;
+  }
+}

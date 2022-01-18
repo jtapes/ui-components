@@ -1,0 +1,34 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.el-table {
+  &__cell {
+    &.flexed > .cell {
+      display: flex !important;
+    }
+  }
+}
+
+.table {
+  &-prepend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $size--12 ($size--20 / 2);
+    width: 100%;
+
+    &--bordered {
+      border: 1px solid #ebeef5;
+      border-bottom: none;
+    }
+  }
+
+  &-actions {
+    &__icon {
+      transform: rotate(90deg);
+    }
+  }
+}

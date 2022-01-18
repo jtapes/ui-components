@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SContentLoader Is Vue snapshot 1`] = `
+<div
+  class="s-content-loader"
+>
+  <svg
+    height="100%"
+    preserveAspectRatio="xMinYMin slice"
+    version="1.1"
+    viewBox="0 0 100% 100%"
+    width="100%"
+  >
+    <rect
+      clip-path="url(loader#uniqueKey-content-idClip)"
+      height="100%"
+      style="fill: url(loader#uniqueKey-content-idGradient);"
+      width="100%"
+      x="0"
+      y="0"
+    />
+     
+    <defs>
+      <clippath
+        id="uniqueKey-content-idClip"
+      >
+        <rect
+          height="100%"
+          rx="5"
+          ry="5"
+          width="100%"
+          x="0"
+          y="0"
+        />
+      </clippath>
+       
+      <lineargradient
+        id="uniqueKey-content-idGradient"
+      >
+        <stop
+          offset="0%"
+          stop-color="#f4f4F4"
+          stop-opacity="1"
+        >
+          <animate
+            attributeName="offset"
+            dur="1s"
+            repeatCount="indefinite"
+            values="-2; 1"
+          />
+        </stop>
+         
+        <stop
+          offset="50%"
+          stop-color="#d9e2ec"
+          stop-opacity="0"
+        >
+          <animate
+            attributeName="offset"
+            dur="1s"
+            repeatCount="indefinite"
+            values="-1.5; 1.5"
+          />
+        </stop>
+         
+        <stop
+          offset="100%"
+          stop-color="#f4f4F4"
+          stop-opacity="1"
+        >
+          <animate
+            attributeName="offset"
+            dur="1s"
+            repeatCount="indefinite"
+            values="-1; 2"
+          />
+        </stop>
+      </lineargradient>
+    </defs>
+  </svg>
+</div>
+`;

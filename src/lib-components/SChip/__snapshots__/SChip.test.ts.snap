@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SChip Is Vue snapshot 1`] = `
+<div
+  class="s-chip text-sm s-chip--closable"
+>
+  <div
+    class="s-chip__content"
+  >
+    <div
+      class="s-chip__text"
+    >
+      
+        
+      
+    </div>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="s-chip__close"
+  >
+    <svg-icon-stub
+      class="icon-32"
+      name="times-24-32"
+    />
+  </div>
+</div>
+`;

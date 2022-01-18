@@ -1,0 +1,245 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Props,
+  Canvas,
+} from '@storybook/addon-docs/blocks'
+import TableTemplate from './TableTemplate.vue'
+import TableTemplateActions from './TableTemplateActions.vue'
+import './TableTemplate.css'
+import Vue from 'vue'
+import { Table, TableColumn } from 'element-ui'
+import 'element-ui/packages/theme-chalk/lib/table.css'
+import 'element-ui/packages/theme-chalk/lib/table-column.css'
+import ruLocale from 'element-ui/lib/locale/lang/ru-RU'
+import locale from 'element-ui/lib/locale'
+locale.use(ruLocale)
+
+<Meta
+  title="DESIGN SYSTEM/External/TableTemplate"
+  component={TableTemplate}
+  decorators={[withDesign]}
+  parameters={{
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Table
+
+export const TemplateBase = (args, { argTypes }) => {
+  Vue.component(Table.name, Table)
+  Vue.component(TableColumn.name, TableColumn)
+  return {
+    props: Object.keys(argTypes),
+    components: { TableTemplate },
+    template:
+      `<table-template></table-template>`,
+    data: () => ({}),
+  }
+}
+
+export const TemplateActions = (args, { argTypes }) => {
+  Vue.component(Table.name, Table)
+  Vue.component(TableColumn.name, TableColumn)
+  return {
+    props: Object.keys(argTypes),
+    components: { TableTemplateActions },
+    template:
+      `<table-template-actions></table-template-actions>`,
+    data: () => ({}),
+  }
+}
+
+<Canvas withToolbar withSource="none">
+  <Story name="Base">
+    {TemplateBase.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas withToolbar withSource="none">
+  <Story name="Actions">
+    {TemplateActions.bind({})}
+  </Story>
+</Canvas>
+
+## Использование s-table в проектах:
+
+<div className="section">
+  <span className="index">1.</span>
+  <span className="title">Устанавливаем Element-UI и плагин (плагин нужен для того, что бы включить в билд только используемые (импортированные) компоненты</span>
+  <div className="subsection">
+    <code>
+      npm install --save-dev element-ui
+    </code>
+    <span className="separator">-></span>
+    <code>
+      npm install --save-dev babel-plugin-component
+    </code>
+  </div>
+</div>
+<div className="section">
+  <span className="index">2.</span>
+  <span className="title">В конфиг-файле babel (.babelrc or babel.config or in build->babel in nuxt.config) прописываем следующее:</span>
+  <div className="subsection">
+    <div className="subtitle">
+      В plugins:
+    </div>
+    <code>&#91;'component', &#123; libraryName: 'element-ui', styleLibraryName: 'theme-chalk' &#125;&#93;</code>
+  </div>
+  <div className="subsection">
+    <div className="subtitle">
+      В presets:
+    </div>
+    <code>&#91;'@babel/preset-env', &#123; targets: &#123; node: 'current' &#125; &#125;&#93;</code>
+  </div>
+</div>
+<div className="section">
+  <span className="index">3.</span>
+  <span className="title">Непосредственно в компоненте (или глобально в проекте) импортировать компоненты и стили:</span>
+  <div className="subsection">
+    <div>
+      <code>
+        import &#123; Table, TableColumn &#125; from 'element-ui'
+      </code>
+    </div>
+    <div>
+      <code>
+        import 'element-ui/packages/theme-chalk/lib/table.css'
+      </code>
+    </div>
+    <div>
+      <code>
+        import 'element-ui/packages/theme-chalk/lib/table-column.css'
+      </code>
+    </div>
+  </div>
+</div>
+<div className="section">
+  <span className="index">4.</span>
+  <span className="title">В таблице также присутствует класс для реализации действий с данными.</span>
+  <div className="subsection">
+    <div className="subtitle">
+      Для этого создается отдельный s-table-column и на кнопку с действиями ставится класс .s-table-column__action. Ниже будет приведен пример реализации
+    </div>
+  </div>
+</div>
+<div>
+  <span className="title">Обертка прокидывает все используемые аттрибуты/листенеры. Ниже указаны примеры шаблона и кода для использования таблицы</span>
+</div>
+<div>
+  <span className="title">Полная документация по таблице <a target="_blank" href="https://element.eleme.io/#/en-US/component/table">здесь</a></span>
+</div>
+
+export const templateCode = `
+<template>
+  <s-table :data="data">
+    <s-table-column
+      prop="date"
+      label="Date"
+      width="180"
+    />
+    <s-table-column
+      prop="name"
+      label="Name"
+      width="180"
+    />
+    <s-table-column
+      prop="address"
+      label="Address"
+    />
+  </s-table>
+</template>
+`
+
+export const templateCodeAction = `
+<template>
+  <s-table :data="data">
+    <s-table-column
+      prop="date"
+      label="Date"
+      width="180"
+    />
+    <s-table-column
+      prop="name"
+      label="Name"
+      width="180"
+    />
+    <s-table-column
+      prop="address"
+      label="Address"
+    />
+    <s-table-column>
+      <template>
+        <s-hint content="Редактировать" append-to-body min-width="150">
+          <s-button
+            size="sm"
+            class="s-table-column__action color-primary mr-20"
+          >
+            <svg-icon name="edit-24-32" class="icon-32" />
+          </s-button>
+        </s-hint>
+      </template>
+    </s-table-column>
+  </s-table>
+</template>
+`
+
+export const scriptCode = `
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Table, TableColumn } from 'element-ui'
+import 'element-ui/packages/theme-chalk/lib/table.css'
+import 'element-ui/packages/theme-chalk/lib/table-column.css'
+import ruLocale from 'element-ui/lib/locale/lang/ru-RU'
+import locale from 'element-ui/lib/locale'
+locale.use(ruLocale)
+/** Компонент для выбора значения */
+@Component({
+  components: {
+    [Table.name]: Table,
+    [TableColumn.name]: TableColumn
+  }
+})
+export default class TableTemplate extends Vue  {
+  @Prop(Array)
+  data = [{
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  }, {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  }, {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  }, {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  }]
+}
+</script>
+`
+
+## Пример template
+
+<Source code={templateCode} />
+
+## Пример script
+
+<Source language={'ts'} code={scriptCode} />
+
+## Пример template с действиями
+
+<Source code={templateCodeAction} />

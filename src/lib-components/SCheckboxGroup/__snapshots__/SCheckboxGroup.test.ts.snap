@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SCheckboxGroup Is Vue snapshot 1`] = `
+<div
+  class="s-checkbox-group"
+>
+  <div
+    class="s-input s-input--text s-input--rounded"
+  >
+    <!---->
+     
+    <input
+      class="s-input__inner s-input__inner--appended"
+      type="text"
+    />
+     
+    <!---->
+     
+    <!---->
+     
+    <div
+      class="s-input__append"
+    >
+      <svg
+        class="svg-icon icon-32 color-font-secondary svg-icon--search-24-32"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <use
+          href="#search-24-32"
+          xlink:href="#search-24-32"
+        />
+      </svg>
+    </div>
+  </div>
+   
+  <div
+    class="s-row s-checkbox-group__items s-row--justify-start s-row--align-center mt-24"
+    style="margin-left: -10px; margin-right: -10px; max-height: 380px;"
+  >
+    <div
+      class="s-col s-checkbox-group__item s-col-24 s-col--align-start"
+      style="padding-left: 10px; padding-right: 10px;"
+    >
+      <label
+        class="s-checkbox text-sm s-checkbox--default"
+      >
+        <div
+          class="s-checkbox__input"
+        >
+          <div
+            class="s-checkbox__inner"
+          >
+            <svg
+              class="svg-icon icon-16 svg-icon--checked-16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <use
+                href="#checked-16"
+                xlink:href="#checked-16"
+              />
+            </svg>
+          </div>
+           
+          <input
+            aria-hidden="false"
+            class="s-checkbox__original"
+            type="checkbox"
+            value="1"
+          />
+        </div>
+         
+        <div
+          class="s-checkbox__label"
+        >
+          1
+        </div>
+      </label>
+    </div>
+  </div>
+   
+  <!---->
+</div>
+`;

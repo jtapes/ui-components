@@ -1,0 +1,70 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: $size--8 $size--12;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: $size--12;
+    border-radius: 50%;
+    width: $size--24;
+    height: $size--24;
+  }
+
+  &--error {
+    color: $color--danger;
+    background-color: $color--danger-light;
+
+    .s-info {
+      &__icon {
+        color: $color--white;
+        background-color: $color--danger;
+      }
+    }
+  }
+
+  &--warning {
+    color: $color--attention;
+    background-color: $color--attention-light;
+
+    .s-info {
+      &__icon {
+        color: $color--white;
+        background-color: $color--attention;
+      }
+    }
+  }
+
+  &--success {
+    color: $color--success;
+    background-color: $color--success-light;
+
+    .s-info {
+      &__icon {
+        color: $color--white;
+        background-color: $color--success;
+      }
+    }
+  }
+
+  &--info {
+    color: $color--primary-accent;
+    background-color: $color--complimentary-bg-light;
+
+    .s-info {
+      &__icon {
+        color: $color--white;
+        background-color: $color--primary-accent;
+      }
+    }
+  }
+}

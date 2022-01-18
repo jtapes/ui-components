@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SCharacteristic Is Vue snapshot 1`] = `
+<div
+  class="s-characteristic"
+  data-test="length"
+>
+  <svg
+    class="svg-icon icon-16 mr-4 svg-icon--length-16"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <use
+      href="#length-16"
+      xlink:href="#length-16"
+    />
+  </svg>
+   
+  <span
+    class="h4"
+  >
+    2000
+  </span>
+</div>
+`;

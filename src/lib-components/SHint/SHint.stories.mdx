@@ -1,0 +1,95 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Props,
+  Preview,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json';
+import SHint from '@/lib-components/SHint/SHint.vue'
+import SButton from '@/lib-components/SButton/SButton.vue'
+import SvgIcon from '@/lib-components/SvgIcon/SvgIcon.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Hint"
+  component={SHint}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    content: { control: 'text' },
+    trigger: { control: 'boolean', defaultValue: true },
+    placement: {
+        options: [
+            'top-left',
+            'top-right',
+            'bottom-left',
+            'bottom-right',
+        ],
+        control: { type: 'select' },
+        defaultValue: 'top-left',
+    },
+    minWidth: { control: 'text' },
+    closable: { control: 'boolean' }
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-Market-UI-Kit?node-id=3449%3A2819',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Подсказка
+
+<Description of={SHint} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SHint, SButton, SvgIcon },
+  template: `
+    <div style="width: 100%; height: 300px; display: flex; align-items: center; justify-content: center;">
+      <s-hint :content="content" :trigger="trigger" :placement="placement" :min-width="minWidth" :closable="closable">
+        <s-button mode="outline">
+          В корзине
+          <template #append>
+            <svg-icon class="icon-32" name="checked-24-32" />
+          </template>
+        </s-button>
+      </s-hint>
+    </div>
+  `,
+})
+
+<Preview withToolbar withSource="none">
+  <Story name="SHint" args={{ content: 'В корзину добавлено 20 т исходя из автоподбора', minWidth: '250px' }}>
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+<s-hint content="В корзину добавлено 20 т исходя из автоподбора">
+  <s-button mode="outline">
+    В корзине
+    <template #append>
+      <svg-icon class="icon-32" name="checked-24-32" />
+    </template>
+  </s-button>
+</s-hint>
+  `}
+/>
+
+<ArgsTable of={SHint} />

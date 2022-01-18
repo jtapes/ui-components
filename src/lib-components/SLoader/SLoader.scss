@@ -1,0 +1,78 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+$loader-radius: 10 !default;
+
+$length: $loader-radius * 2 * 3.14;
+
+.s-loader {
+  @include z-index(loader);
+
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: $color--font-secondary;
+  background-color: $color--background;
+  inset: 0;
+
+  &-spinner {
+    transform: rotate(-90deg);
+
+    &__path {
+      stroke-width: 2px;
+      animation: fill 1.5s ease-in-out infinite;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &--group {
+    color: $color--primary-accent;
+    background-color: $color--white;
+    opacity: 0.84;
+
+    .s-loader {
+      &__wrapper {
+        position: absolute;
+        top: 5%;
+      }
+
+      &-spinner {
+        width: $size--60;
+        height: $size--60;
+      }
+    }
+  }
+
+  &--relative {
+    position: relative;
+    pointer-events: none;
+  }
+
+  &--input {
+    background-color: $color--white;
+  }
+
+  @keyframes fill {
+    0% {
+      stroke-dasharray: 0, $length;
+    }
+
+    50% {
+      stroke-dasharray: $length, 0;
+      stroke-dashoffset: 0;
+    }
+
+    100% {
+      stroke-dasharray: 0, $length;
+      stroke-dashoffset: -$length;
+    }
+  }
+}

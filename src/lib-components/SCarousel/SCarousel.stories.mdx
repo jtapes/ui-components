@@ -1,0 +1,122 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest'
+import {
+  Meta,
+  Story,
+  Source,
+  Canvas,
+  ArgsTable,
+  Description,
+} from '@storybook/addon-docs/blocks'
+import SCarousel from '@/lib-components/SCarousel/SCarousel.vue'
+import SCarouselItem from '@/lib-components/SCarouselItem/SCarouselItem.vue'
+import SRow from '@/lib-components/SRow/SRow.vue'
+import SCol from '@/lib-components/SCol/SCol.vue'
+import SImage from '@/lib-components/SImage/SImage.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Carousel"
+  component={SCarousel}
+  parameters={{
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  components: {SCarousel, SCarouselItem, SRow, SCol, SImage},
+  props: Object.keys(argTypes),
+  template: `
+    <div style="padding: 0 200px">
+      <s-carousel :perPage="perPage" :scrollPerPage="scrollPerPage" :loop="loop" :autoplay="autoplay" :autoplayTimeout="autoplayTimeout" :autoplayHoverPause="autoplayHoverPause">
+        <s-carousel-item  v-for="i in 12" :key="i">
+          <s-row>
+            <s-col :span="24">
+              <s-row>
+                <s-col :span="24">
+                  <s-image src="https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042719_15.jpg" width="200px" height="150px" />
+                </s-col>
+              </s-row>
+              <s-row>
+                <s-col :span="24">
+                  <span class="bold link color-primary">Товар {{ i }}</span>
+                </s-col>
+              </s-row>
+            </s-col>
+          </s-row>
+        </s-carousel-item>
+      </s-carousel>
+    </div>
+  `,
+})
+
+export const TemplateWithTitle = (args, { argTypes }) => ({
+  components: {SCarousel, SCarouselItem, SRow, SCol, SImage},
+  props: Object.keys(argTypes),
+  template: `
+    <div style="padding: 0 200px">
+      <s-carousel :perPage="perPage" :scrollPerPage="scrollPerPage" :loop="loop" :autoplay="autoplay" :autoplayTimeout="autoplayTimeout" :autoplayHoverPause="autoplayHoverPause">
+        <template #title>
+          <span class="h2 bold link">Статьи</span>
+        </template>
+        <s-carousel-item  v-for="i in 12" :key="i">
+          <s-row>
+            <s-col :span="24">
+              <s-row>
+                <s-col :span="24">
+                  <s-image src="https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042719_15.jpg" width="200px" height="150px" />
+                </s-col>
+              </s-row>
+              <s-row>
+                <s-col :span="24">
+                  <span class="bold link color-primary">Товар {{ i }}</span>
+                </s-col>
+              </s-row>
+            </s-col>
+          </s-row>
+        </s-carousel-item>
+      </s-carousel>
+    </div>
+  `,
+})
+
+# Карусель
+
+<Description />
+
+<Story name="SCarousel" args={{ perPage: 4 }}>
+  {Template.bind({})}
+</Story>
+
+<Story name="SCarousel (with title)" args={{ perPage: 4 }}>
+  {TemplateWithTitle.bind({})}
+</Story>
+
+<ArgsTable of={SCarousel} />
+<Source code={`
+<s-carousel :perPage="perPage" :scrollPerPage="scrollPerPage" :loop="loop" :autoplay="autoplay" :autoplayTimeout="autoplayTimeout" :autoplayHoverPause="autoplayHoverPause">
+  <template #title>
+    <span class="h2 bold link">Статьи</span>
+  </template>
+  <s-carousel-item  v-for="i in 12" :key="i">
+    <s-row>
+      <s-col :span="24">
+        <s-row>
+          <s-col :span="24">
+            <s-image src="https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042719_15.jpg" width="200px" height="150px" />
+          </s-col>
+        </s-row>
+        <s-row>
+          <s-col :span="24">
+            <span class="bold link color-primary">Товар {{ i }}</span>
+          </s-col>
+        </s-row>
+      </s-col>
+    </s-row>
+  </s-carousel-item>
+</s-carousel>
+`} />

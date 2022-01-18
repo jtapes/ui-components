@@ -1,0 +1,118 @@
+import { action } from '@storybook/addon-actions'
+import { withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Canvas,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json';
+import SDatePicker from '@/lib-components/SDatePicker/SDatePicker.vue'
+import SvgIcon from '@/lib-components/SvgIcon/SvgIcon.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/DatePicker"
+  component={SDatePicker}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    value: {
+      control: 'date',
+      defaultValue: '',
+      description: 'Дата',
+      type: 'Date'
+    },
+    placeholder : {
+      control: 'text',
+      defaultValue: 'Выберите дату',
+      description: 'Плейсхолдер',
+      type: 'String'
+    },
+    valueStart: {
+      control: 'date',
+      defaultValue: '',
+      description: 'Дата начала',
+      type: 'Date'
+    },
+    valueEnd: {
+      control: 'date',
+      defaultValue: '',
+      description: 'Дата завершения',
+      type: 'Date'
+    }
+  }}
+  parameters={{
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+
+
+export const Template = (args, {argTypes}) => ({
+  props: Object.keys(argTypes),
+  components: {SDatePicker, SvgIcon},
+  template: `<div style="width: 300px; height: 300px;"><s-date-picker v-model="currentValue" @change-date="changeValue" :placeholder="placeholder" /></div>`,
+  data() {
+    return {
+      currentValue: ''
+    }
+  },
+  watch: {
+    value() {
+      this.currentValue = new Date(this.value)
+    }
+  },
+  methods: {
+    changeValue(v) {
+      action('change')(v)
+      this.currentValue = v
+    },
+  }
+})
+
+export const TemplateRange = (args, {argTypes}) => ({
+  props: Object.keys(argTypes),
+  components: {SDatePicker, SvgIcon},
+  template: `<div style="width: 300px; height: 100px;"><s-date-picker :value="currentValue" @change-date="changeValue" :range="true" placeholder="Выберите даты" :appendToBody="true" /></div>`,
+  data() {
+    return {
+      currentValue: ['','']
+    }
+  },
+  watch: {
+    valueStart() {
+      this.currentValue = [new Date(this.valueStart), new Date(this.valueEnd)]
+    },
+    valueEnd() {
+      this.currentValue = [new Date(this.valueStart), new Date(this.valueEnd)]
+    }
+  },
+  methods: {
+    changeValue(v) {
+      action('change')(v)
+      this.currentValue = v
+    },
+  }
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="SDatePicker">
+    {Template.bind({})}
+  </Story>
+  <Story name="SDatePickerRange">
+    {TemplateRange.bind({})}
+  </Story>
+</Canvas>
+
+<Description of={SDatePicker} />
+<ArgsTable of={SDatePicker} />
+<Source
+  language="html"
+  code={`<s-date-picker :value="currentValue" @change-date="changeValue" :placeholder="placeholder" />`}
+/>

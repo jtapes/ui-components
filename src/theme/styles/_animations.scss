@@ -1,0 +1,49 @@
+.s-zoom-in-center {
+  &-enter-active, &-leave-active {
+    transition: all $animate--time cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  &-enter, &-leave-active {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+.s-zoom-in-top {
+  &-enter-active, &-leave-active {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: center top;
+    transition: $animate--time;
+  }
+
+  &-enter, &-leave-active {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+.s-fade-in-down {
+  &-enter-active, &-leave-active {
+    opacity: 1;
+    transform: translateZ(0);
+    transition: all $animate--time;
+  }
+
+  &-enter, &-leave-active {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.s-fade {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity $animate--time;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+}

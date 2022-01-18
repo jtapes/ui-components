@@ -1,0 +1,111 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Props,
+  Preview,
+} from '@storybook/addon-docs'
+import SSelect from '@/lib-components/SSelect/SSelect.vue'
+import results from '/.jest-test-results.json';
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Select"
+  component={SSelect}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    state: {
+      control: { type: 'select' },
+      options: [
+        'disabled',
+        'error',
+        'default',
+      ]
+    },
+    multiple: { control: 'boolean' },
+    searchable: { control: 'boolean' },
+    items: {
+      control: 'array',
+      defaultValue: [
+        { text: 'Значение 1', value: 1 },
+        { text: 'Значение 2', value: 2 },
+        { text: 'Значение 3', value: 3 }
+      ]
+    },
+    placeholder: { control: 'text' },
+    itemText: { control: 'text' },
+    itemValue: { control: 'text' },
+    rounded: { control: 'boolean', defaultValue: true },
+    appendToBody:  { control: 'boolean', defaultValue: true },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-%2F-Market-%2F-UI-Kit?node-id=846%3A572',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Выпадающий список
+
+<Description of={SSelect} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SSelect },
+  template:
+    `
+      <div style="width: 300px; margin-left: 100px; height: 300px;">
+        <SSelect
+          :state="state"
+          :multiple="multiple"
+          :searchable="searchable"
+          :items="items"
+          :placeholder="placeholder"
+          :item-text="itemText"
+          :item-value="itemValue"
+          :rounded="rounded"
+          :appendToBody="appendToBody"
+          v-model="selected"
+          @change="handleChange"
+        />
+      </div>
+`,
+    data() {
+        return {
+            selected: null
+        }
+    },
+    methods: {
+        handleChange() {
+            action('change')()
+        }
+    }
+})
+
+<Preview withToolbar withSource="none">
+  <Story name="SSelect" args={{ searchable: true }}>
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <s-select v-model="selectedItem" searchable/>
+  `}
+/>
+
+<ArgsTable of={SSelect} />

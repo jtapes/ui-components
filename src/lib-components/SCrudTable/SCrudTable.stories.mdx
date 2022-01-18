@@ -1,0 +1,587 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Props,
+  Canvas,
+} from '@storybook/addon-docs'
+import SCrudTable from '@/lib-components/SCrudTable/SCrudTable.vue'
+import results from '/.jest-test-results.json'
+import mask from '@/plugins/directives/mask'
+import Vue from 'vue'
+import { Table, TableColumn } from 'element-ui'
+import 'element-ui/packages/theme-chalk/lib/table.css'
+import 'element-ui/packages/theme-chalk/lib/table-column.css'
+import ruLocale from 'element-ui/lib/locale/lang/ru-RU'
+import locale from 'element-ui/lib/locale'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/CrudTable"
+  component={SCrudTable}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    tableData: {
+      type: { name: 'array', required: true },
+      defaultValue: [],
+      description: 'Схема для генерации контента таблицы',
+      control: { type: 'array' },
+    },
+    tableColumns: {
+      type: { name: 'array', required: true },
+      defaultValue: [],
+      description: 'Схема для генерации заголовков таблицы',
+      control: { type: 'array' },
+    },
+    tableActions: {
+      type: { name: 'array', required: true },
+      defaultValue: [],
+      description: 'Схема для генерации действий таблицы',
+      control: { type: 'array' },
+    },
+    tableSchema: {
+      type: { name: 'array', required: true },
+      defaultValue: [],
+      description: 'Схема для генерации формы',
+      control: { type: 'array' },
+    },
+    columnControl: {
+      type: { name: 'boolean', required: false },
+      defaultValue: false,
+      description: 'Возможность скрывать/показывать колонки',
+      control: { type: 'boolean' }
+    },
+    bordered: {
+      type: { name: 'boolean', required: false },
+      defaultValue: true,
+      description: 'Включены границы таблицы или нет',
+      control: { type: 'boolean' }
+    },
+    tableTitle: {
+      type: { name: 'string', required: false },
+      description: 'Заголовок таблицы',
+      control: { type: 'string' }
+    },
+  }}
+  parameters={{
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# CRUD-таблица
+
+<Description of={SCrudTable} />
+
+export const Template = (args, { argTypes }) => {
+  Vue.use(mask)
+  Vue.component(Table.name, Table)
+  Vue.component(TableColumn.name, TableColumn)
+  locale.use(ruLocale)
+  return {
+    props: Object.keys(argTypes),
+    components: { SCrudTable },
+    template: `
+      <s-crud-table
+        :table-title="tableTitle"
+        :table-data="tableData"
+        :table-columns="tableColumns"
+        :table-actions="tableActions"
+        :table-schema="tableSchema"
+        :pagination="pagination"
+        :column-control="columnControl"
+        :bordered="bordered"
+        @read="handleRead"
+        @create="handleCreate"
+        @update="handleUpdate"
+        @delete="handleDelete"
+      />
+    `,
+    methods: {
+      handleRead(data) {
+        action('read')(data)
+      },
+      handleCreate(data) {
+        action('create')(data)
+      },
+      handleUpdate(data) {
+        action('update')(data)
+      },
+      handleDelete(data) {
+        action('delete')(data)
+      },
+    }
+  }
+}
+
+<Canvas withToolbar withSource="none">
+  <Story
+    name="SCrudTable"
+    args={{
+      tableData: [
+        {
+          id: 100,
+          isActive: true,
+          name: 'Name100',
+          date: '04.10.2021'
+        },
+        {
+          id: 101,
+          isActive: true,
+          name: 'Name101',
+          date: '04.10.2021'
+        },
+        {
+          id: 102,
+          isActive: true,
+          name: 'Name102',
+          date: '04.10.2021'
+        }
+      ],
+      tableColumns: [
+        {
+          prop: 'id',
+          label: 'Идентификатор',
+          width: '200',
+          sortable: true,
+          filterable: true,
+          filterSchema: [
+            {
+              name: 'id',
+              title: 'Идентификатор договора',
+              layout: 'column',
+              fields: [
+                {
+                  itemType: 'input',
+                  name: 'id',
+                  valueName: 'id',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          prop: 'isActive',
+          label: 'Активен'
+        },
+        {
+          prop: 'name',
+          label: 'Название договора'
+        },
+        {
+          prop: 'date',
+          label: 'Дата создания договора',
+          width: '220',
+          type: 'date',
+          inputFormat: 'dd.MM.yyyy',
+          outputFormat: 'dd-MM-yyyy hh:mm:ss',
+          sortable: true
+        }
+      ],
+      tableActions: {
+        create: {
+          url: 'test/create',
+          mode: 'modal',
+          method: 'POST'
+        },
+        read: {
+          url: 'test/read',
+          method: 'GET'
+        },
+        update: {
+          url: 'test/update/:id',
+          mode: 'modal',
+          method: 'PUT'
+        },
+        delete: {
+          url: 'test/delete/:id',
+          mode: 'modal',
+          method: 'DELETE'
+        },
+      },
+      tableSchema: [
+        {
+          name: 'id',
+          title: 'Идентификатор договора',
+          layout: 'column',
+          fields: [
+            {
+              itemType: 'input',
+              name: 'id',
+              valueName: 'id',
+              options: {
+                state: 'readonly',
+              }
+            }
+          ]
+        },
+        {
+          name: 'isActive',
+          title: 'Активный договор',
+          layout: 'column',
+          fields: [
+            {
+              itemType: 'checkbox',
+              name: 'isActive',
+              valueName: 'isActive',
+            }
+          ]
+        },
+        {
+          name: 'name',
+          title: 'Название договора',
+          layout: 'column',
+          fields: [
+            {
+              itemType: 'input',
+              name: 'name',
+              valueName: 'name',
+              rules: [{ name: 'required' }],
+            }
+          ]
+        },
+        {
+          name: 'date',
+          title: 'Дата создания договора',
+          layout: 'column',
+          fields: [
+            {
+              itemType: 'date-picker',
+              name: 'date',
+              valueName: 'date',
+            }
+          ]
+        },
+      ],
+      pagination: {
+        page: 1,
+        total: 100,
+        limit: 10,
+        pagerCount: 5,
+      },
+      columnControl: true
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <s-crud-table :table-data=tableData :table-columns=tableColumns :table-actions=tableActions :table-schema=tableSchema :pagination="pagination" />
+  `}
+/>
+
+<ArgsTable of={SCrudTable} />
+
+## Подробнее
+
+## Проп tableTitle
+
+В этот проп прописывается заголовок таблицы, который будет выведен сверху от хедера таблицы.
+
+Вид пропа: строка.
+
+## Проп columnControl
+
+Этот проп отвечает за возможность скрывать/открывать нужные пользователю колонки
+
+Вид пропа: булиновское значение (true/false).
+
+## Проп bordered
+
+Этот проп отвечает за то, будут ли отображены границы у таблицы.
+
+Вид пропа: булиновское значение (true/false).
+
+## Схема для пропа tableData
+
+В этот проп прописываются все поля со значениями данных в таблице.
+
+Вид пропа: массив объектов, где ключ в объекте - это ключ поля, который должен совпадать с ключом prop в tableColumns (см. код), а значение - данные, которые будут выведены в таблице
+
+<Source
+  language="ts"
+  code={`
+[
+    {
+        id: 100,
+        isActive: true,
+        name: 'Name100',
+        date: '04.10.2021'
+    },
+    {
+        id: 101,
+        isActive: true,
+        name: 'Name101',
+        date: '04.10.2021'
+    },
+    {
+        id: 102,
+        isActive: true,
+        name: 'Name102',
+        date: '04.10.2021'
+    }
+]
+  `}
+/>
+
+## Схема для пропа tableColumns
+
+В этот проп прописываются все заголовки таблицы.
+
+Вид пропа: массив объектов. Структура объекта:
+
+Ключ prop - отвечает за ключ в tableData, по которому и будут выводится данные для конкретной колонки.
+
+Ключ label - текст, который будет отображён в заголовке конкретного столбца таблицы.
+
+Ключ width (необязательный) - статичная ширина колонки в пикселях.
+
+Ключ type (необязательный) - используется для определения типа данных в конкретной колонке (например type: 'date' отвечает за то, что тип данных 'дата', для того что бы её можно было отобразить по нужному паттерну) (см. код).
+
+Ключ inputFormat (обязателен при type: 'date') - отвечает за формат даты на входе (то, как приходит дата с сервера) (см. код).
+
+Ключ outputFormat (обязателен при type: 'date') - отвечает за формат даты на выходе (то, как будет отображена дата в таблице) (см. код).
+
+<Source
+  language="ts"
+  code={`
+[
+    {
+        prop: 'id',
+        label: 'Идентификатор',
+        width: '140'
+    },
+    {
+        prop: 'isActive',
+        label: 'Активен'
+    },
+    {
+        prop: 'name',
+        label: 'Название договора'
+    },
+    {
+        prop: 'date',
+        label: 'Дата создания договора',
+        width: '200',
+        type: 'date',
+        inputFormat: 'dd.MM.yyyy',
+        outputFormat: 'dd-MM-yyyy hh:mm:ss'
+    }
+]
+  `}
+/>
+
+## Схема для пропа tableActions
+
+В этот проп прописываются все действия таблицы (CRUD).
+
+Вид пропа: объект. Структура объекта:
+
+Ключ create / update / delete - отвечает за действие, которое будет выполнено. Вид объекта create / update / delete:
+
+Ключ url - ссылка (API).
+
+Ключ mode (необязательный) - тип отображения действия (default: modal).
+
+Ключ method - метод действия для API (POST | PUT | DELETE).
+
+<Source
+  language="ts"
+  code={`
+{
+    create: {
+        url: 'test/create',
+        mode: 'modal',
+        method: 'POST'
+    },
+    update: {
+        url: 'test/update',
+        mode: 'modal',
+        method: 'PUT'
+    },
+    delete: {
+        url: 'test/delete',
+        mode: 'modal',
+        method: 'DELETE'
+    },
+}
+  `}
+/>
+
+## Схема для пропа tableSchema
+
+В этот проп прописывается схема для рендеринга формы редактирования / создания
+
+Более подробное описание в документации к SForm
+
+<Source
+  language="ts"
+  code={`
+{
+    name: 'semanticNameOfField' // Семантическое имя поля (необязательное поле)
+    title: 'Заголовок поля' // Заголовок поля, рендерится перед блоком с инпутами (необязательное поле)
+    hint: 'Подсказка' // Подсказка рядом с заголовком (без заголовка не использовать) (необязательное поле)
+    maxLength: 5 // Ограничение на максимальное число рендерящихся элементов (необязательное поле)
+    groupClass: 'block__element--modifier' // Класс для группы элементов (необязательное поле)
+    condition: () => boolean // Условие отображения (необязательное поле)
+    layout: // Настройки рендера
+        | 'column' // Обычный рендер в столбик друг за другом
+        | 'row' // inline рендер в строку
+        | { // рендер в несколько колонок (display: grid)
+              type: 'grid-column'
+              columnCount: 3 // количество этих колонок
+          }
+        | { // табличная вёрстка (display: grid)
+              type: 'table'
+              ratio: '1:3' // соотношение 'строки:столбцы'
+              flow: 'row' | 'column' // grid-auto-flow (необязательное поле)
+              gaps: { // (необязательное поле)
+                  column: '30' // расстояние между колонкам (grid-gap-column) (необязательное поле)
+                  row: '20' // расстояние между столбцами (grid-gap-row) (необязательное поле)
+              }
+              collapses: { // расширения блоков (необязательное поле)
+                  [key: number]: { // номер блока, который расширяется
+                    [key in 'column' | 'row']: string // в какую сторону и как происходит расширение (grid-column \\ grid-row) (необязательное поле)
+                  }
+              }
+          }
+    fields: [ // Массив полей (инпутов)
+        {
+            itemType: 'checkbox', // Тип поля ('input' | 'checkbox' | 'checkbox-group' | 'dropdown' | 'radio' | 'select' | 'price-range' | 'date-picker')
+            name: 'isActive', // Семантическое имя поля (необязательное поле)
+            valueName: 'isActive', // Название ключа к которому относится поле (prop в tableColumns, ключ в tableData)
+            rules: [{ name: 'required' }], // Правила для поля (валидация) (необязательное поле)
+            options: { // Опции для поля (для каждого типа поля свой набор опций) (необязательное поле)
+                state: 'readonly',
+            }
+        }
+    ]
+}
+  `}
+/>
+
+## Типы полей
+
+### price-range
+
+<Source
+  language="ts"
+  code={`
+{
+    options: {
+        min: number // Минимальное значение для range
+        max: number // Максимальное значение для range
+    }
+}
+  `}
+/>
+
+### date-picker
+
+<Source
+  language="ts"
+  code={`
+{
+    options: {
+        format: string // Формат отображения даты в date-picker (необязательное поле)
+        placeholder: string // Placeholder в date-picker (необязательное поле)
+        state: string // Состояние date-picker (необязательное поле)
+    }
+}
+  `}
+/>
+
+### input
+
+<Source
+  language="ts"
+  code={`
+{
+    options: {
+        type: string // Тип инпута ('text' | 'number') (необязательное поле)
+        placeholder: string // Placeholder в input (необязательное поле)
+        clearable: boolean // Очищаемый инпут или нет (добавляет крестик в конце инпута для очистки значения) (необязательное поле)
+        size: string // Размер инпута ('xs' | 'sm' | 'md' | 'lg' | 'xl') (необязательное поле)
+        rounded: boolean // Закруглённый инпут или нет (необязательное поле)
+        state: string // Состояние инпута (необязательное поле)
+    }
+}
+  `}
+/>
+
+### checkbox
+
+<Source
+  language="ts"
+  code={`
+{
+    options: {
+        label: string // Текст возле checkbox (label) (необязательное поле)
+        multiple: boolean // Множественное значение checkbox или нет (необязательное поле)
+        checkedValue: object | number | string | boolean // Значение при выбранном checkbox (необязательное поле)
+    }
+}
+  `}
+/>
+
+### checkbox-group
+
+<Source
+  language="ts"
+  code={`
+{
+    options: {
+        items: {
+            label: string
+            checkedValue: SCheckboxValue
+        } // Массив checkbox (label и checkedValue описано выше)
+    }
+}
+  `}
+/>
+
+### radio
+
+<Source
+  language="ts"
+  code={`
+{
+    options: {
+        label?: string (label и checkedValue описано выше)
+        checkedValue: object | number | string (label и checkedValue описано выше)
+    }
+}
+  `}
+/>
+
+### select
+
+<Source
+  language="ts"
+  code={`
+{
+    options: {
+        placeholder: string // Placeholder в select (необязательное поле)
+        items: Массив элементов для select
+        itemText: string // Ключ для текста элемента select (необязательное поле)
+        itemValue: string // Ключ для значения элемента select (необязательное поле)
+        multiple: boolean // Множественный выбор значений в select или нет (необязательное поле)
+        rounded: boolean // Закруглённый select или нет (необязательное поле)
+        searchable: boolean // Добавляет иинпут для поиска внутри по элементам select (необязательное поле)
+        appendToBody: boolean // Выносит дропдаун селекта в body документа (ставить true, если селект используется, например, в модальном окне) (необязательное поле)
+    }
+}
+  `}
+/>

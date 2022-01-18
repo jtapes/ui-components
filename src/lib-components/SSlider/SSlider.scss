@@ -1,0 +1,193 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+@import '~vue-slider-component/dist-css/vue-slider-component.css';
+
+@mixin triangle($size, $color, $direction) {
+  width: 0;
+  height: 0;
+  @if ($direction == top) or
+    ($direction == bottom) or
+    ($direction == right) or
+    ($direction == left)
+  {
+    border-style: solid;
+    border-width: $size / 2;
+    border-color: transparent;
+    @if $direction == top {
+      border-bottom-color: $color;
+    } @else if $direction == right {
+      border-left-color: $color;
+    } @else if $direction == bottom {
+      border-top-color: $color;
+    } @else if $direction == left {
+      border-right-color: $color;
+    }
+  }
+}
+
+@mixin arrow($size, $color) {
+  &::after {
+    content: '';
+    position: absolute;
+  }
+
+  &-top {
+    &::after {
+      @include triangle($size, $color, bottom);
+
+      left: 50%;
+      top: 100%;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  &-bottom {
+    &::after {
+      @include triangle($size, $color, top);
+
+      left: 50%;
+      bottom: 100%;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  &-left {
+    &::after {
+      @include triangle($size, $color, right);
+
+      left: 100%;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+
+  &-right {
+    &::after {
+      @include triangle($size, $color, left);
+
+      right: 100%;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+$themeColor: $color--primary-accent !default;
+$disabledOpacity: 0.5 !default;
+
+$bgColor: #ccc !default;
+$railBorderRadius: 15px !default;
+
+$dotShadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32) !default;
+$dotShadowFocus: 0 0 1px 2px rgba($themeColor, 0.36) !default;
+$dotBgColor: #fff !default;
+$dotBgColorDisable: #ccc !default;
+$dotBorderRadius: 50% !default;
+
+$tooltipBgColor: $themeColor !default;
+$tooltipColor: #fff !default;
+$tooltipBorderRadius: 5px !default;
+$tooltipPadding: 2px 5px !default;
+$tooltipMinWidth: 20px !default;
+$tooltipArrow: 10px !default;
+$tooltipFontSize: 14px !default;
+
+$stepBorderRadius: 50% !default;
+$stepBgColor: rgba(0, 0, 0, 0.16) !default;
+
+$labelFontSize: 14px !default;
+
+/* component style */
+.vue-slider-disabled {
+  opacity: $disabledOpacity;
+  cursor: not-allowed;
+}
+
+/* rail style */
+.vue-slider-rail {
+  border-radius: $railBorderRadius;
+  background-color: $bgColor;
+}
+
+/* process style */
+.vue-slider-process {
+  border-radius: $railBorderRadius;
+  background-color: $themeColor;
+}
+
+/* mark style */
+.vue-slider-mark {
+  z-index: 4;
+
+  &:first-child,
+  &:last-child {
+    .vue-slider-mark-step {
+      display: none;
+    }
+  }
+
+  @at-root &-step {
+    border-radius: $stepBorderRadius;
+    width: 100%;
+    height: 100%;
+    background-color: $stepBgColor;
+  }
+
+  @at-root &-label {
+    font-size: $labelFontSize;
+    white-space: nowrap;
+  }
+}
+
+/* dot style */
+.vue-slider-dot {
+  width: $size--16 !important; /* stylelint-disable-line declaration-no-important */
+  height: $size--16 !important; /* stylelint-disable-line declaration-no-important */
+
+  @at-root &-handle {
+    border: 1px solid $themeColor;
+    border-radius: $dotBorderRadius;
+    width: 100%;
+    height: 100%;
+    box-shadow: $dotShadow;
+    box-sizing: border-box;
+    background-color: $dotBgColor;
+    cursor: pointer;
+
+    @at-root &-focus {
+      box-shadow: $dotShadowFocus;
+    }
+    @at-root &-disabled {
+      background-color: $dotBgColorDisable;
+      cursor: not-allowed;
+    }
+  }
+
+  @at-root &-tooltip {
+    @at-root &-inner {
+      @include arrow($tooltipArrow, inherit);
+
+      border-color: $tooltipBgColor;
+      border-radius: $tooltipBorderRadius;
+      padding: $tooltipPadding;
+      min-width: $tooltipMinWidth;
+      box-sizing: content-box;
+      font-size: $tooltipFontSize;
+      white-space: nowrap;
+      text-align: center;
+      color: $tooltipColor;
+      background-color: $tooltipBgColor;
+    }
+  }
+
+  @at-root &-tooltip-wrapper {
+    opacity: 0;
+    transition: all 0.3s;
+    @at-root &-show {
+      opacity: 1;
+    }
+  }
+}

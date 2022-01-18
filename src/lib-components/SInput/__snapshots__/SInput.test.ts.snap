@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SInput Snapshot 1`] = `
+<div
+  class="s-input s-input--text s-input--rounded"
+>
+  <!---->
+   
+  <input
+    class="s-input__inner"
+    type="text"
+  />
+   
+  <!---->
+   
+  <!---->
+   
+  <!---->
+</div>
+`;

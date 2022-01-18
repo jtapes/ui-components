@@ -1,0 +1,106 @@
+import {
+  Meta,
+  Story,
+  Source,
+  Canvas,
+} from '@storybook/addon-docs'
+
+<Meta title="Шрифты проекта" />
+
+export const Headers = (header, sizes, text) => (
+  `<div class="d-f ai-c jc-sb mb-20">
+    <div style="flex: 0 0 50%" class="d-f">
+      <template v-if="${header !== 'text-xl'}">
+        <div style="flex: 0 0 10%" class="d-f fd-c mr-80">
+          <div class="${header}">
+            ${header.toUpperCase()}
+          </div>
+          <div class="text-sm color-font-muted">
+            ${sizes}
+          </div>
+        </div>
+        <div class="${header} d-f ai-c ml-40">
+          ${text}
+        </div>
+      </template>
+    </div>
+    <div style="flex: 50%" class="d-f ml-80">
+      <div style="flex: 0 0 30%" class="d-f fd-c">
+        <div class="${header} bold">
+          ${header.toUpperCase()} (bold)
+        </div>
+        <div class="text-sm color-font-muted">
+          ${sizes}
+        </div>
+      </div>
+      <div class="${header} bold d-f ai-c ml-40">
+        ${text}
+      </div>
+    </div>
+  </div>`
+)
+
+export const Texts = (tag, sizes, text) => (
+  `<div class="d-f ai-c jc-sb mb-20">
+    <div style="flex: 0 0 50%" class="d-f">
+      <div style="flex: 0 0 10%" class="d-f fd-c mr-80">
+        <div class="${tag}">
+          ${tag}
+        </div>
+        <div class="text-sm color-font-muted">
+          ${sizes}
+        </div>
+      </div>
+      <div class="${tag} ${tag.includes('sm') || tag.includes('xs') ? 'color-font-muted' : ''} d-f ai-c ml-40">
+        ${text}
+      </div>
+    </div>
+    <div style="flex: 50%" class="d-f ml-80">
+      <template v-if="${!tag.includes('xs')}">
+        <div style="flex: 0 0 30%" class="d-f fd-c">
+          <div class="${tag} bold">
+            ${tag} (bold)
+          </div>
+          <div class="text-sm color-font-muted">
+            ${sizes}
+          </div>
+        </div>
+        <div class="${tag} bold ${tag.includes('sm') || tag.includes('xs') ? 'color-font-muted' : ''} d-f ai-c ml-40">
+          ${text}
+        </div>
+      </template>
+    </div>
+  </div>`
+)
+
+export const Template = () => ({
+  template: `
+  <div>
+    ${Headers('text-xl', '44/48 px', 'Grumpy wizards make toxic brew for the evil Queen and Jack')}
+    ${Headers('h1', '32/36 px', 'Grumpy wizards make toxic brew for the evil Queen and Jack')}
+    ${Headers('h2', '28/32 px', 'Grumpy wizards make toxic brew for the evil Queen and Jack')}
+    ${Headers('h3', '24/32 px', 'Grumpy wizards make toxic brew for the evil Queen and Jack')}
+    ${Headers('h4', '20/28 px', 'Grumpy wizards make toxic brew for the evil Queen and Jack')}
+    ${Texts('text', '16/20 px', 'One line of text')}
+    ${Texts('p', '16/32 px', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet lacus lectus sociis sit tellus nunc elit, eget sed. Eu pharetra risus, ut diam nunc. Ut consequat a suspendisse neque nunc, amet in ornare vulputate. Ultrices nullam vitae volutpat venenatis etiam quisque cursus.')}
+    ${Texts('p text-sm', '14/28 px', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet lacus lectus sociis sit tellus nunc elit, eget sed. Eu pharetra risus, ut diam nunc. Ut consequat a suspendisse neque nunc, amet in ornare vulputate. Ultrices nullam vitae volutpat venenatis etiam quisque cursus.')}
+    ${Texts('text-xs', '12/16 px', 'One line of text')}
+  </div>`
+})
+
+<Canvas>
+  <Story name="Шрифты проекта">
+    {Template.bind()}
+  </Story>
+</Canvas>
+
+## Примеры
+<Source
+  language="html"
+  code={`
+    <div class="text">Example text</div>
+    <div class="h1">Example text</div>
+    <h1>Example text</h1>
+    <span class="h1">Example text</span>
+`}
+/>

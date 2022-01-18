@@ -1,0 +1,74 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Props,
+  Preview,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json';
+import SInfo from '@/lib-components/SInfo/SInfo.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Info"
+  component={SInfo}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    message: { control: 'text' },
+    type: {
+      control: { type: 'select' },
+      options: [
+        'error',
+        'warning',
+        'success',
+        'info',
+      ],
+      defaultValue: 'error'
+    }
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/42Xh2qI3qvq2CRkc2HJlwA/MVP-3-Market-Catalog-%E2%80%A2-Product-Page?node-id=1128%3A88',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Информационный компонент
+
+<Description of={SInfo} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SInfo },
+  template:
+    `<s-info :message="message" :type="type" />`,
+})
+
+<Preview withToolbar withSource="none">
+  <Story name="SInfo" args={{ message: 'Error', type: 'error' }}>
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <s-info message="Error message" type="error" />
+  `}
+/>
+
+<ArgsTable of={SInfo} />
+

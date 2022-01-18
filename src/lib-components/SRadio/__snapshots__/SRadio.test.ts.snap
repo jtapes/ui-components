@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SRadio Is Vue snapshot 1`] = `
+<label
+  class="s-radio text-sm s-radio--default s-radio--default"
+>
+  <div
+    class="d-f"
+  >
+    <div
+      class="s-radio__input"
+    >
+      <div
+        class="s-radio__inner"
+      />
+       
+      <input
+        aria-hidden="false"
+        class="s-radio__original"
+        type="radio"
+        value=""
+      />
+    </div>
+     
+    <div
+      class="s-radio__label"
+    >
+      
+    </div>
+     
+    <!---->
+  </div>
+   
+  <!---->
+</label>
+`;

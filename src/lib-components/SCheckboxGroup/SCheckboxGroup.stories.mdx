@@ -1,0 +1,97 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Props,
+  Canvas,
+} from '@storybook/addon-docs'
+import SCheckboxGroup from '@/lib-components/SCheckboxGroup/SCheckboxGroup.vue'
+import results from '/.jest-test-results.json';
+
+<Meta
+  title="DESIGN SYSTEM/Atom/CheckboxGroup"
+  component={SCheckboxGroup}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    items: {
+      control: 'array',
+      defaultValue: [
+        { label: 'Значение 1', checkedValue: 1 },
+        { label: 'Значение 2', checkedValue: 2 },
+        { label: 'Значение 3', checkedValue: 3 },
+        { label: 'Значение 4', checkedValue: 4 },
+      ]
+    },
+    columns: { control: 'number', defaultValue: 1 },
+    searchable: { control: 'boolean', defaultValue: true },
+    visibleCount: { control: 'number', defaultValue: 3 },
+    hiddenState: { control: 'select', options: ['show-more', 'scroll'], defaultValue: 'show-more' }
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/42Xh2qI3qvq2CRkc2HJlwA/MVP-3-Market-Catalog-%E2%80%A2-Product-Page?node-id=1902%3A3451',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# CheckboxGroup
+
+<Description of={SCheckboxGroup} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SCheckboxGroup },
+  template:
+    `
+      <div style="width: 400px">
+        <SCheckboxGroup
+          v-model="selectedValue"
+          :items="items"
+          :columns="columns"
+          @change="handleChange"
+          :searchable="searchable"
+          :visible-count="visibleCount"
+          :hidden-state="hiddenState"
+        ></SCheckboxGroup>
+      </div>
+`,
+  data() {
+    return {
+      selectedValue: null
+    }
+  },
+  methods: {
+    handleChange() {
+      action('change')()
+    }
+  }
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="SCheckboxGroup">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <s-checkbox-group v-model="selectedValue" :items="items"/>
+  `}
+/>
+
+<ArgsTable of={SCheckboxGroup} />

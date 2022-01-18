@@ -1,0 +1,271 @@
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest'
+import { styled } from '@storybook/theming'
+import {
+  Meta,
+  Story,
+  Description,
+  Source,
+  Preview,
+} from '@storybook/addon-docs'
+import SFormItem, {
+  COMPONENT_TYPES,
+} from '@/lib-components/SFormItem/SFormItem.vue'
+import results from '/.jest-test-results.json'
+import mask from '@/plugins/directives/mask'
+import Vue from 'vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/FormItem"
+  component={SFormItem}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    component: {
+      type: { name: 'string', required: true },
+      defaultValue: 's-input',
+      description: 'Тип компонента',
+      control: {
+        type: 'radio',
+        options: COMPONENT_TYPES,
+      },
+    },
+      isDirty: {
+          control: 'boolean',
+          defaultValue: true,
+      },
+    isValid: {
+      type: { name: 'boolean', required: false },
+      description: 'Для получения статуса валидации',
+      control: 'boolean',
+      defaultValue: true,
+    },
+    rules: {
+      description: 'Схема для валидации',
+      control: 'array',
+      defaultValue: [{ name: 'required '}]
+    },
+    value: { control: 'string' },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/42Xh2qI3qvq2CRkc2HJlwA/MVP-3-%2F-Market-%2F-Catalog-%E2%80%A2-Products-Page?node-id=132%3A0',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Поле формы
+
+<Description of={SFormItem} />
+
+export const Template = (args, { argTypes }) => {
+  Vue.use(mask)
+  return {
+    props: Object.keys(argTypes),
+    components: { SFormItem },
+    template: `
+      <SFormItem
+        v-model="model"
+        component="s-input"
+        :rules="rules"
+        v-bind="$props"
+      />
+    `,
+    data() {
+      return {
+        model: '',
+      }
+    },
+  }
+}
+
+<Preview withToolbar withSource="none">
+  <Story
+    name="SFormItem"
+    args={{
+      component: 's-input',
+      value: '',
+      rules: [{ name: 'required' }],
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+<s-form-item
+  v-model="model"
+  component="s-input"
+  :is-valid.sync="isValid"
+  :rules="[{ name: 'required' }]"
+  :clearable="true"
+  placeholder="Введите информацию"
+/>
+  `}
+/>
+
+<ArgsTable of={SFormItem} />
+
+export const StyledTd = styled.td`
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #333333;
+  margin: 0;
+  padding: 6px 13px;
+`
+
+export const StyledTh = styled.th`
+  font-weight: bold;
+  color: #333333;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 6px 13px;
+`
+
+export const StyledTr = styled.tr`
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 0;
+`
+
+export const StyledTable = styled.table`
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-overflow-scrolling: touch;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 0;
+  border-collapse: collapse;
+`
+
+## Валидация
+
+<Canvas withSource="none">
+  <div>
+    Пример:
+    <Source
+      language="html"
+      code={`
+<s-form-item
+  v-model="form.email"
+  class="mt-16"
+  placeholder="Email *"
+  clearable
+  :rules="[
+    {
+      name: 'regularkaName',
+      rule: /^\\d{7}$/g,
+    },
+    { name: 'minLength', params: [4] },
+    {
+      name: 'myCustomRule',
+      rule: (val) => val === 'test',
+    },
+    {
+      name: 'unionRuleName',
+      modifier: 'or',
+      rules: [{ rule: /^\\d{7}$/g }, { name: 'minLength', params: [4] }],
+    },
+  ]"
+>
+  <template #error-regularkaName="{ error }">
+    <div>{{ error.isError ? 'Регулярное выражение!' : '' }}</div>
+  </template>
+</s-form-item>
+      `}
+    />
+    Правила:
+    <StyledTable>
+      <tbody>
+        {Object.keys(rulesList).map((el, i) => (
+          <StyledTr key={i}>
+            <StyledTd>{el}</StyledTd>
+          </StyledTr>
+        ))}
+      </tbody>
+    </StyledTable>
+    Также при необходимости можно использовать один из 3 логических
+    модификаторов - not\or\and:
+    <br />
+    <br />
+    NOT:
+    <Source
+      language="js"
+      code={`
+{
+  name: 'notMobile',
+  modifier: 'not',
+  rule: /^+7\\d{10}$/,
+},
+      `}
+    />
+    OR:
+    <Source
+      language="js"
+      code={`
+{
+  name: 'unionRuleName',
+  modifier: 'or',
+  rules: [{ rule: /^\\d{7}$/g }, { name: 'minLength', params: [4] }],
+},
+      `}
+    />
+    AND:
+    <Source
+      language="js"
+      code={`
+{
+  name: 'unionRuleName',
+  modifier: 'and',
+  rules: [{ rule: /^\\d{7}$/g }, { name: 'minLength', params: [4] }],
+},
+      `}
+    />
+    <br />
+    Для работы с ошибками мы используем слоты #errors или #error-[имяПравила].
+    Первый дает объект со всеми ошибками, в котором можно обратиться по
+    названию, второй даёт доступ к конкретной ошибке. При этом если мы
+    используем #errors, то он затирает все #error-[имяПравила] слоты. Пример
+    объекта с ошибками:
+    <Source
+      language="js"
+      code={`
+{
+  required: {
+    isError: true, // Текущее состояние проверки поля по этому правилу
+    msg: 'Поле необходимо для заполнения', // Сообщение при ошибке
+    params: {}, // Дополнительные параметры
+  },
+  minLength: {
+    isError: false,
+    msg: 'Поле должно иметь минимум 4 символа',
+    params: {
+      min: 4,
+    },
+  },
+}
+      `}
+    />
+    Пример использования этого объекта:
+    <Source
+      language="html"
+      code={`
+<template #error-minLength="{ error }">
+  {{ error.isError ? \`Сообщение должно быть не короче \$\{error.params.min\}\` символов! : '' }}
+</template>
+      `}
+    />
+  </div>
+</Canvas>

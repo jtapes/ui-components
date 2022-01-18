@@ -1,0 +1,16 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: $size--60;
+
+  &__description {
+    margin: $size--24 0 $size--40;
+  }
+}

@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SForm Is Vue snapshot 1`] = `
+<form
+  class="s-form"
+  model="[object Object]"
+/>
+`;

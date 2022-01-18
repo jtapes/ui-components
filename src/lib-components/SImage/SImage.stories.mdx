@@ -1,0 +1,106 @@
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest'
+import {
+  Meta,
+  Story,
+  Source,
+  Canvas,
+  ArgsTable,
+  Description,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json';
+import SImage from '@/lib-components/SImage/SImage.vue'
+import STag from '@/lib-components/STag/STag.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Image"
+  component={SImage}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    src: { control: 'text' },
+    alt: { control: 'text' },
+    width: { control: 'text' },
+    height: { control: 'text' },
+    fit: {
+      options: [
+        null,
+        'contain',
+        'cover',
+        'none',
+        'scale-down',
+        'fill',
+      ],
+      control: { type: 'select' },
+      defaultValue: null,
+    },
+    tagContainerClass: { control: 'text' },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/42Xh2qI3qvq2CRkc2HJlwA/MVP-3-%2F-Market-%2F-Catalog-%E2%80%A2-Product-Page?node-id=9%3A3',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SImage },
+  template: `
+    <s-image :src="src" :alt="alt" :width="width" :height="height" :fit="fit" :tag-container-class="tagContainerClass" />
+  `,
+})
+
+export const TemplateWithTag = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SImage, STag },
+  template: `
+    <s-image :src="src" :alt="alt" width="200px" height="250px" fit="scale-down" :tag-container-class="tagContainerClass">
+      <template #tags>
+        <s-tag label="Выгодно" bg-color="mosque" text-color="white"/>
+        <s-tag label="-12%" bg-color="danger" text-color="white"/>
+      </template>
+    </s-image>
+  `
+})
+
+# Изображение
+
+<Description />
+
+<Canvas withToolbar withSource="none">
+  <Story name="SImage">
+    {Template.bind({})}
+  </Story>
+  <Story name="SImage(with tag)">
+    {TemplateWithTag.bind({})}
+  </Story>
+</Canvas>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <s-image src="example.png" alt="Изображение" width="50%" height="50%" fit="scale-down" />
+  `}
+/>
+
+<ArgsTable />
+
+<div style={{padding: '10px 0', marginBottom: '15px'}}>
+  <span style={{color: '#111111', fontWeight: 700, fontSize: '20px'}}>
+    В атрибуты <span style={{color: '#606060', fontSize: '20px'}}>width</span> и <span style={{color: '#606060', fontSize: '20px'}}>height</span> можно передавать как строковые значения
+  </span>
+  <span style={{color: '#606060', fontSize: '18px', marginLeft: '5px'}}>(100px / 3rem / 50% и т.п.)</span>
+  <span style={{color: '#111111', fontWeight: 700, fontSize: '20px'}}>, так и числовые.</span>
+  <div style={{padding: '20px'}}>
+    <span>Числовые значения будут преобразованы в единицу измерения "пиксели" (px).</span>
+  </div>
+</div>

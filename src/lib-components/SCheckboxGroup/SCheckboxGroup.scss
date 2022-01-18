@@ -1,0 +1,18 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-checkbox-group {
+  &__item {
+    margin-bottom: $size--20;
+  }
+
+  &__items {
+    @include scrollbar;
+
+    display: flex;
+    overflow-y: auto;
+  }
+}

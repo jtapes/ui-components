@@ -1,0 +1,21 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+$progress-bar-active-color: $color--success !default;
+$progress-bar-height: $size--4 !default;
+$progress-bar-bgColor: $color--border !default;
+
+.s-progress-bar {
+  &__line {
+    height: $progress-bar-height;
+    background: $progress-bar-bgColor;
+  }
+
+  &__progress {
+    height: $progress-bar-height;
+    background: $progress-bar-active-color;
+  }
+}

@@ -1,0 +1,405 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuAside Init menu active 1`] = `
+<aside
+  class="aside us-n"
+>
+  <div
+    class="aside__logo"
+    style="width: 320px;"
+  >
+    <svg
+      class="svg-icon aside__logo-icon svg-icon--logo"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <use
+        href="#logo"
+        xlink:href="#logo"
+      />
+    </svg>
+  </div>
+   
+  <transition-group-stub
+    css="true"
+    name="menu"
+  />
+   
+  <div
+    class="aside__column"
+  >
+    <div
+      class="aside-menu-column"
+    >
+      <header
+        class="aside-menu-column__header aside-menu-column__header--active"
+      >
+        <svg
+          class="svg-icon aside-menu-column__header-icon icon-24 mr-8 color-primary svg-icon--arrow-24-32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <use
+            href="#arrow-24-32"
+            xlink:href="#arrow-24-32"
+          />
+        </svg>
+        
+    Меню
+  
+      </header>
+       
+      <div
+        class="aside-menu-column__blocks"
+      >
+        <div
+          class="aside-menu-column__block"
+        >
+          <div
+            column="[object Object]"
+            parentcolumn="[object Object]"
+            parentelement="[object Object]"
+          >
+            <div
+              class="menu-item menu-item--active"
+            >
+              <span
+                class="menu-item__text"
+              >
+                <!---->
+                
+      О компании
+    
+              </span>
+               
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div
+          class="aside-menu-column__block"
+        >
+          <div>
+            <a
+              class="menu-item menu-item--link"
+              href="/"
+            >
+              <span>
+                Склад
+              </span>
+               
+              <svg
+                class="svg-icon icon-24 menu-item__arrow svg-icon--link-blank-24-32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#link-blank-24-32"
+                  xlink:href="#link-blank-24-32"
+                />
+              </svg>
+            </a>
+          </div>
+          <div>
+            <a
+              class="menu-item menu-item--link"
+              href="/"
+            >
+              <span>
+                Аукционы
+              </span>
+               
+              <svg
+                class="svg-icon icon-24 menu-item__arrow svg-icon--link-blank-24-32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#link-blank-24-32"
+                  xlink:href="#link-blank-24-32"
+                />
+              </svg>
+            </a>
+          </div>
+          <div>
+            <a
+              class="menu-item menu-item--link"
+              href="/"
+            >
+              <span>
+                Производство
+              </span>
+               
+              <svg
+                class="svg-icon icon-24 menu-item__arrow svg-icon--link-blank-24-32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#link-blank-24-32"
+                  xlink:href="#link-blank-24-32"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+`;
+
+exports[`MenuAside Init menu amd static 1`] = `
+<aside
+  class="aside us-n"
+>
+  <div
+    class="aside__logo"
+    style="width: 320px;"
+  >
+    <svg
+      class="svg-icon aside__logo-icon svg-icon--logo"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <use
+        href="#logo"
+        xlink:href="#logo"
+      />
+    </svg>
+  </div>
+   
+  <transition-group-stub
+    css="true"
+    name="menu"
+  />
+   
+  <div
+    class="aside__column"
+  >
+    <div
+      class="aside-menu-column"
+    >
+      <header
+        class="aside-menu-column__header aside-menu-column__header--active"
+      >
+        <svg
+          class="svg-icon aside-menu-column__header-icon icon-24 mr-8 color-primary svg-icon--arrow-24-32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <use
+            href="#arrow-24-32"
+            xlink:href="#arrow-24-32"
+          />
+        </svg>
+        
+    Предыдущая страница
+  
+      </header>
+       
+      <div
+        class="aside-menu-column__blocks"
+      >
+        <div
+          class="aside-menu-column__block"
+        >
+          <div
+            column="[object Object]"
+          >
+            <div
+              class="menu-item"
+            >
+              <span
+                class="menu-item__text"
+              >
+                <!---->
+                
+      Главная
+    
+              </span>
+               
+              <svg
+                class="svg-icon icon-24 svg-icon--burger"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#burger"
+                  xlink:href="#burger"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            column="[object Object]"
+          >
+            <div
+              class="menu-item menu-item--active"
+            >
+              <span
+                class="menu-item__text"
+              >
+                <!---->
+                
+      Заказы
+    
+              </span>
+               
+              <!---->
+            </div>
+          </div>
+          <div
+            column="[object Object]"
+          >
+            <div
+              class="menu-item"
+            >
+              <span
+                class="menu-item__text"
+              >
+                <!---->
+                
+      Финансы
+    
+              </span>
+               
+              <svg
+                class="svg-icon icon-24 svg-icon--dropdown-24-32 menu-item__arrow"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#dropdown-24-32"
+                  xlink:href="#dropdown-24-32"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            column="[object Object]"
+          >
+            <div
+              class="menu-item"
+            >
+              <span
+                class="menu-item__text"
+              >
+                <svg
+                  class="svg-icon icon-24 mr-8 svg-icon--burger"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use
+                    href="#burger"
+                    xlink:href="#burger"
+                  />
+                </svg>
+                
+      Программа лояльности
+    
+              </span>
+               
+              <!---->
+            </div>
+          </div>
+          <div
+            column="[object Object]"
+          >
+            <div
+              class="menu-item"
+            >
+              <span
+                class="menu-item__text"
+              >
+                <!---->
+                
+      Профиль
+    
+              </span>
+               
+              <!---->
+            </div>
+          </div>
+          <div
+            column="[object Object]"
+          >
+            <a
+              class="menu-item menu-item--link"
+              href="/"
+            >
+              <span>
+                Компания
+              </span>
+               
+              <svg
+                class="svg-icon icon-24 menu-item__arrow svg-icon--link-blank-24-32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#link-blank-24-32"
+                  xlink:href="#link-blank-24-32"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div
+          class="aside-menu-column__block"
+        >
+          <div>
+            <a
+              class="menu-item menu-item--link"
+              href="/"
+            >
+              <span>
+                Склад
+              </span>
+               
+              <svg
+                class="svg-icon icon-24 menu-item__arrow svg-icon--link-blank-24-32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#link-blank-24-32"
+                  xlink:href="#link-blank-24-32"
+                />
+              </svg>
+            </a>
+          </div>
+          <div>
+            <a
+              class="menu-item menu-item--link"
+              href="/"
+            >
+              <span>
+                Аукционы
+              </span>
+               
+              <svg
+                class="svg-icon icon-24 menu-item__arrow svg-icon--link-blank-24-32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#link-blank-24-32"
+                  xlink:href="#link-blank-24-32"
+                />
+              </svg>
+            </a>
+          </div>
+          <div>
+            <a
+              class="menu-item menu-item--link"
+              href="/"
+            >
+              <span>
+                Производство
+              </span>
+               
+              <svg
+                class="svg-icon icon-24 menu-item__arrow svg-icon--link-blank-24-32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#link-blank-24-32"
+                  xlink:href="#link-blank-24-32"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+`;

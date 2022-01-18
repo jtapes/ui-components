@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SPriceRange init 1`] = `
+<div
+  class="s-price-range"
+>
+  <div
+    class="d-f mb-16"
+  >
+    <div
+      class="s-input s-input--number s-input--rounded"
+    >
+      <div
+        class="s-input__prepend"
+      >
+        <span
+          class="ml-16 color-font-secondary"
+        >
+          от
+        </span>
+      </div>
+       
+      <input
+        class="s-input__inner s-input__inner--prepended"
+        max="100"
+        min="0"
+      />
+       
+      <!---->
+       
+      <!---->
+       
+      <!---->
+    </div>
+     
+    <div
+      class="s-input ml-8 s-input--number s-input--rounded"
+    >
+      <div
+        class="s-input__prepend"
+      >
+        <span
+          class="ml-16 color-font-secondary"
+        >
+          до
+        </span>
+      </div>
+       
+      <input
+        class="s-input__inner s-input__inner--prepended"
+        max="100"
+        min="0"
+      />
+       
+      <!---->
+       
+      <!---->
+       
+      <!---->
+    </div>
+  </div>
+   
+  <div
+    class="vue-slider vue-slider-ltr"
+    max="100"
+    min="0"
+    style="padding: 7px 0px; width: auto; height: 4px;"
+    tooltip="none"
+  >
+    <div
+      class="vue-slider-rail"
+    >
+      <div
+        class="vue-slider-process"
+        style="height: 100%; top: 0px; left: 10%; width: 20%; transition-property: width,left; transition-duration: 0.5s;"
+      />
+      <div
+        aria-orientation="horizontal"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="10"
+        aria-valuetext="10"
+        class="vue-slider-dot"
+        role="slider"
+        style="width: 14px; height: 14px; transform: translate(-50%, -50%); top: 50%; left: 10%; transition: left 0.5s;"
+        tabindex="0"
+      >
+        <div
+          class="vue-slider-dot-handle"
+        />
+      </div>
+      <div
+        aria-orientation="horizontal"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="30"
+        aria-valuetext="30"
+        class="vue-slider-dot"
+        role="slider"
+        style="width: 14px; height: 14px; transform: translate(-50%, -50%); top: 50%; left: 30%; transition: left 0.5s;"
+        tabindex="0"
+      >
+        <div
+          class="vue-slider-dot-handle"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

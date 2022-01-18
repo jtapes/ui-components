@@ -1,0 +1,189 @@
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest'
+import {
+  Meta,
+  Story,
+  Description,
+  Source,
+  Canvas,
+} from '@storybook/addon-docs'
+import SInput from '@/lib-components/SInput/SInput.vue'
+import SButton from '@/lib-components/SButton/SButton.vue'
+import SvgIcon from '@/lib-components/SvgIcon/SvgIcon.vue'
+
+import results from '/.jest-test-results.json'
+
+import Vue from 'vue'
+import mask from '@/plugins/directives/mask'
+
+import { SvgMdxArgType } from '@/storybook/components/icon/SvgIconArgType'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Input"
+  component={SInput}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    state: {
+      control: { type: 'select' },
+      options: [
+        'disabled',
+        'error',
+        'readonly',
+        'default',
+        'warning',
+        'success',
+        'info'
+      ]
+    },
+    type: {
+      options: ['text', 'number'],
+      control: { type: 'select' },
+      defaultValue: 'text',
+    },
+    align: {
+      control: { type: 'select' },
+      options: [
+      'left',
+      'center',
+      'right'
+      ]
+    },
+    rounded: { control: 'boolean', defaultValue: true },
+    placeholder: { control: 'text' },
+    size: {
+      options: [null, 'sm'],
+      control: { type: 'select' },
+    },
+    clearable: { control: 'boolean', defaultValue: false },
+    append: SvgMdxArgType,
+    prepend: SvgMdxArgType,
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/42Xh2qI3qvq2CRkc2HJlwA/MVP-3-%2F-Market-%2F-Catalog-%E2%80%A2-Product-Page?node-id=9%3A4568',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Поле ввода (Input)
+
+<Description of={SInput} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SInput, SvgIcon },
+  template: `
+    <div style="display: flex; justify-content: center">
+      <s-input v-model="model" :state="state" :type="type" :align="align" :rounded="rounded" :placeholder="placeholder" :size="size" :clearable="clearable">
+        <template #prepend v-if="prepend">
+          <svg-icon :name="prepend" :class="prepend.includes('-16') ? 'icon-16' : 'icon-32'" />
+        </template>
+        <template #append v-if="append">
+          <svg-icon :name="append" :class="append.includes('-16') ? 'icon-16' : 'icon-32'" />
+        </template>
+      </s-input>
+    </div>
+  `,
+  data: () => {
+    return {
+      model: '',
+    }
+  },
+})
+
+export const MaskTemplate = (args, { argTypes }) => {
+  Vue.use(mask)
+  return {
+    props: Object.keys(argTypes),
+    components: { SInput, SvgIcon },
+    template: `
+      <div style="display: flex; justify-content: center">
+        <s-input v-model="model" v-mask="'+7 (###) ###-##-##'" :state="state" :type="type" :align="align" :rounded="rounded" :placeholder="placeholder" :size="size" :clearable="clearable" />
+      </div>
+    `,
+    data: () => {
+      return {
+        model: '',
+      }
+    },
+  }
+}
+
+export const BasicTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SInput, SButton, SvgIcon },
+  template: `
+    <div style="display: flex; justify-content: center">
+      <s-input v-model="inputValue" :state="state" :type="type" :align="align" :rounded="rounded" :placeholder="placeholder" :size="size" :clearable="clearable">
+        <template #append>
+          <svg-icon name="search-24-32" class="icon-32" />
+        </template>
+      </s-input>
+    </div>
+  `,
+  data: () => ({
+    inputValue: '',
+  }),
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="SInput">{Template.bind({})}</Story>
+  <Story name="Basic search" args={{ placeholder: 'Искать' }}>
+    {BasicTemplate.bind({})}
+  </Story>
+  <Story name="SInput not rounded" args={{ rounded: false }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="SInput mask">{MaskTemplate.bind({})}</Story>
+</Canvas>
+
+## Пример
+
+  <Source
+    language="html"
+    code={`
+<s-input v-model="model" type="text" rounded placeholder="Искать" size="sm" clearable>
+  <template #prepend>
+    <svg-icon name="plus-24-32" class="icon-32" />
+  </template>
+  <template #append>
+    <svg-icon name="arrow-24-32" class="icon-32" />
+  </template>
+</s-input>
+  `}
+/>
+
+  <ArgsTable of={SInput} />
+
+## Маска
+
+  <Canvas withSource="none">
+    <div>
+      Для создания масок используется директива v-mask. Токены для маски:
+      <Source
+        language="html"
+        code={`
+    '#': {pattern: /\d/},
+    'X': {pattern: /[0-9a-zA-Z]/},
+    'S': {pattern: /[a-zA-Z]/},
+    'A': {pattern: /[a-zA-Z]/, transform: v => v.toLocaleUpperCase()},
+    'a': {pattern: /[a-zA-Z]/, transform: v => v.toLocaleLowerCase()},
+    '!': {escape: true}
+    `}
+    />
+    Пример:
+    <Source
+      language="html"
+      code={`
+    <s-input v-model="model" v-mask="'+7 (###) ###-##-##'" />
+    `}
+    />
+  </div>
+</Canvas>

@@ -1,0 +1,81 @@
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Preview,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json'
+import SStepper from '@/lib-components/SStepper/SStepper.vue'
+import SButton from '@/lib-components/SButton/SButton.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Stepper"
+  component={SStepper}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    steps: {
+      control: 'array',
+      defaultValue: ['Корзина', 'Договор', 'Получение', 'Оплата']
+    },
+    value: {
+      control: 'text',
+      defaultValue: 'Договор',
+      description: 'Выбранный шаг',
+    }
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/gsZV6tcRkd7YirnRoHY9nN/MVP-3-Market-Checkout-%E2%80%A2-Login?node-id=254%3A2316',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Stepper
+
+<Description of={SStepper} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SStepper, SButton },
+  template:
+    `<div>
+      <s-stepper v-model="value" :steps="steps" />
+      <div class="d-f mt-80 jc-c">
+        <s-button @click="changeStep('Корзина')">Корзина</s-button>
+        <s-button @click="changeStep('Договор')">Договор</s-button>
+        <s-button @click="changeStep('Получение')">Получение</s-button>
+        <s-button @click="changeStep('Оплата')">Оплата</s-button>
+      </div>
+     </div>`,
+  methods: {
+    changeStep(value) {
+      this.value = value
+    }
+  },
+})
+
+<Preview withToolbar withSource="none">
+  <Story name="SStepper">
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+## Пример
+
+<Source
+  language="html"
+  code={`<s-stepper v-model="currStep" :steps="['Корзина', 'Договор', 'Получение', 'Оплата']" />`}
+/>
+
+<ArgsTable of={SStepper} />

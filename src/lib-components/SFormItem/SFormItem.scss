@@ -1,0 +1,26 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-form-item {
+  &__error {
+    @include text-sm;
+
+    margin-top: $size--8;
+    color: $color--danger;
+  }
+
+  &--required {
+    .s-input {
+      &__placeholder {
+        &::after {
+          content: '*';
+          display: inline-block;
+          color: $color--danger;
+        }
+      }
+    }
+  }
+}

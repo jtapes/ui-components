@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SFormItem Is Vue snapshot 1`] = `
+<div
+  class="s-form-item"
+>
+  <div
+    class="s-input s-input--text s-input--rounded"
+  >
+    <!---->
+     
+    <input
+      class="s-input__inner"
+      type="text"
+    />
+     
+    <!---->
+     
+    <!---->
+     
+    <!---->
+  </div>
+   
+  <!---->
+</div>
+`;

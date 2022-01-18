@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SLoader Is Vue snapshot 1`] = `
+<transition-stub
+  name="s-fade"
+>
+  <div
+    class="s-loader"
+    style="display: none;"
+  >
+    <div
+      class="s-loader__wrapper"
+      style="display: none;"
+    >
+      <svg
+        class="s-loader-spinner icon-32"
+        viewBox="0 0 32 32"
+      >
+        <circle
+          class="s-loader-spinner__path"
+          cx="16"
+          cy="16"
+          fill="none"
+          r="10"
+          stroke="currentColor"
+        />
+      </svg>
+       
+      <!---->
+    </div>
+  </div>
+</transition-stub>
+`;

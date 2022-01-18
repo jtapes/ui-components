@@ -1,0 +1,221 @@
+/* Body */
+body {
+  @include font;
+
+  color: $color--font;
+  background: $color--white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: map-get($sizes, 8);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: map-get($sizes, 8);
+  background: rgba($color--outline, 0.5);
+}
+
+/* Components */
+.input-width {
+  max-width: $size--200;
+}
+
+/* Container */
+.s-container {
+  display: block;
+  margin: 0 auto;
+  padding: 0 map-get($container-lg, padding);
+  width: calc(100% - #{map-get($container-lg, padding)} * 2);
+  max-width: $max-content-width;
+  box-sizing: content-box;
+
+  @include responsive(xs, $breakpoints-with-max) {
+    padding: 0 map-get($container-xs, padding);
+    width: calc(100% - #{map-get($container-xs, padding)} * 2);
+  }
+
+  @include responsive(sm, $breakpoints-with-max) {
+    padding: 0 map-get($container-sm, padding);
+    width: calc(100% - #{map-get($container-sm, padding)} * 2);
+  }
+
+  @include responsive(md, $breakpoints-with-max) {
+    padding: 0 map-get($container-md, padding);
+    width: calc(100% - #{map-get($container-md, padding)} * 2);
+  }
+
+  @include responsive(lg, $breakpoints-with-max) {
+    padding: 0 map-get($container-lg, padding);
+    width: calc(100% - #{map-get($container-lg, padding)} * 2);
+  }
+}
+
+/* Colors */
+@include color('primary', $color--primary);
+@include color('primary-accent', $color--primary-accent);
+@include color('primary-dark', $color--primary-dark);
+@include color('danger', $color--danger);
+@include color('success', $color--success);
+@include color('attention', $color--attention);
+
+@include color('font', $color--font);
+@include color('font-secondary', $color--font-secondary);
+@include color('font-muted', $color--font-muted);
+
+@include color('border', $color--border);
+@include color('background', $color--background);
+
+@include color('white', $color--white);
+
+@include color('complimentary-bg', $color--complimentary-bg);
+@include color('complimentary-bg-light', $color--complimentary-bg-light);
+@include color('outline', $color--outline);
+@include color('mosque', $color--mosque);
+@include color('mosque-light', $color--mosque-light);
+@include color('siren', $color--siren);
+@include color('siren-light', $color--siren-light);
+@include color('diamond', $color--diamond);
+@include color('diamond-light', $color--diamond-light);
+@include color('gradient-metallic', $color--gradient-metallic);
+@include color('gradient-primary', $color--gradient-primary);
+
+/* Text */
+h1, .h1 {
+  @include h1;
+}
+
+h2, .h2 {
+  @include h2;
+}
+
+h3, .h3 {
+  @include h3;
+}
+
+h4, .h4 {
+  @include h4;
+}
+
+.text {
+  @include text;
+
+  &-xs {
+    @include text-xs;
+  }
+
+  &-sm {
+    @include text-sm;
+  }
+
+  &-xl {
+    @include text-xl;
+  }
+}
+
+p, .p {
+  @include font(16px, 32px, -0.02em, 400);
+}
+
+p.text-sm, .p.text-sm {
+  @include font(14px, 28px, -0.02em, 400);
+}
+
+.bold {
+  &:not(.text-xs) {
+    font-weight: 600;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: $color--primary;
+  transition: color ease $animate--time;
+  cursor: pointer;
+
+  &:hover {
+    color: $color--danger !important; /* Нужно дать цвет на ховер, перекрывая всевозможные стили, поэтому important */ /* stylelint-disable-line declaration-no-important */
+  }
+
+  &--underline {
+    text-decoration: underline;
+  }
+}
+
+/* Icons */
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-16 {
+  width: $icon--16;
+  height: $icon--16;
+}
+
+.icon-24 {
+  width: $icon--24;
+  height: $icon--24;
+}
+
+.icon-32 {
+  width: $icon--32;
+  height: $icon--32;
+}
+
+/* Margins / Paddings */
+@include sizes-classes;
+
+/* Global classes */
+@include project-classes;
+
+.us-n {
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.c-p {
+  cursor: pointer;
+}
+
+.c-na {
+  cursor: not-allowed;
+}
+
+sub {
+  vertical-align: sub;
+}
+
+sup {
+  vertical-align: super;
+}
+
+/* Adaptive global classes, margins / paddings */
+@include responsive(xs) {
+  @include sizes-classes('-xs');
+  @include project-classes('-xs');
+}
+
+@include responsive(sm) {
+  @include sizes-classes('-sm');
+  @include project-classes('-sm');
+}
+
+@include responsive(md) {
+  @include sizes-classes('-md');
+  @include project-classes('-md');
+}
+
+@include responsive(lg) {
+  @include sizes-classes('-lg');
+  @include project-classes('-lg');
+}
+
+@include responsive(xl) {
+  @include sizes-classes('-xl');
+  @include project-classes('-xl');
+}

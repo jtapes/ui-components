@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SSelect Is Vue snapshot 1`] = `
+<div
+  class="s-select s-select--default s-select--rounded"
+>
+  <div
+    class="s-select__wrapper"
+  >
+    <div
+      class="s-select__toggler"
+    >
+      <div
+        class="s-input s-input--text s-input--readonly s-input--rounded"
+      >
+        <!---->
+         
+        <input
+          class="s-input__inner s-input__inner--appended"
+          placeholder="Выберите"
+          readonly="readonly"
+          type="text"
+        />
+         
+        <!---->
+         
+        <!---->
+         
+        <div
+          class="s-input__append"
+        >
+          <svg
+            class="svg-icon icon-32 svg-icon--dropdown-24-32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <use
+              href="#dropdown-24-32"
+              xlink:href="#dropdown-24-32"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+     
+    <transition-stub
+      name="s-zoom-in-top"
+    >
+      <div
+        class="s-select__dropdown text-sm"
+        style="display: none;"
+      >
+        <div
+          class="s-select__search"
+        >
+          <div
+            class="s-input s-input--text s-input--rounded"
+          >
+            <!---->
+             
+            <input
+              class="s-input__inner s-input__inner--appended"
+              placeholder="Искать"
+              type="text"
+            />
+             
+            <!---->
+             
+            <!---->
+             
+            <div
+              class="s-input__append"
+            >
+              <svg
+                class="svg-icon icon-32 svg-icon--search-24-32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  href="#search-24-32"
+                  xlink:href="#search-24-32"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+         
+        <div
+          class="s-select__items"
+        >
+          <label
+            class="s-checkbox text-sm s-select__item ai-fs s-checkbox--default"
+          >
+            <div
+              class="s-checkbox__input"
+            >
+              <div
+                class="s-checkbox__inner"
+              >
+                <svg
+                  class="svg-icon icon-16 svg-icon--checked-16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use
+                    href="#checked-16"
+                    xlink:href="#checked-16"
+                  />
+                </svg>
+              </div>
+               
+              <input
+                aria-hidden="false"
+                class="s-checkbox__original"
+                type="checkbox"
+                value="Значение 1"
+              />
+            </div>
+             
+            <div
+              class="s-checkbox__label"
+            >
+              <span
+                class="s-select__item--multiple"
+              >
+                Значение 1
+              </span>
+            </div>
+          </label>
+          <label
+            class="s-checkbox text-sm s-select__item ai-fs s-checkbox--default"
+          >
+            <div
+              class="s-checkbox__input"
+            >
+              <div
+                class="s-checkbox__inner"
+              >
+                <svg
+                  class="svg-icon icon-16 svg-icon--checked-16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use
+                    href="#checked-16"
+                    xlink:href="#checked-16"
+                  />
+                </svg>
+              </div>
+               
+              <input
+                aria-hidden="false"
+                class="s-checkbox__original"
+                type="checkbox"
+                value="Значение 2"
+              />
+            </div>
+             
+            <div
+              class="s-checkbox__label"
+            >
+              <span
+                class="s-select__item--multiple"
+              >
+                Значение 2
+              </span>
+            </div>
+          </label>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+</div>
+`;

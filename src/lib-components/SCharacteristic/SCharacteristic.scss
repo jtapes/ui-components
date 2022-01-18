@@ -1,0 +1,14 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-characteristic {
+  display: inline-flex;
+  align-items: center;
+
+  & + & {
+    margin-left: $size--16;
+  }
+}

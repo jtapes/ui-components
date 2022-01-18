@@ -1,0 +1,80 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-col {
+  &--align {
+    &-center {
+      text-align: center;
+    }
+
+    &-start {
+      text-align: start;
+    }
+
+    &-end {
+      text-align: end;
+    }
+  }
+}
+
+@for $i from 0 through 24 {
+  .s-col-#{$i} {
+    @if ($i == 0) {
+      display: none;
+    } @else {
+      display: block;
+    }
+
+    flex: 0 0 (1 / 24 * $i * 100) * 1%;
+    max-width: (1 / 24 * $i * 100) * 1%;
+  }
+
+  @if ($i != 0) {
+    .s-col-offset-#{$i} {
+      margin-left: (1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+
+@each $size in map-keys($breakpoints-map) {
+  @include responsive($size) {
+    .s-col-#{$size} {
+      &--align {
+        &-center {
+          text-align: center;
+        }
+
+        &-start {
+          text-align: start;
+        }
+
+        &-end {
+          text-align: end;
+        }
+      }
+    }
+
+    @for $i from 0 through 24 {
+      .s-col-#{$size}-#{$i} {
+
+        @if ($i == 0) {
+          display: none;
+        } @else {
+          display: block;
+        }
+
+        flex: 0 0 (1 / 24 * $i * 100) * 1%;
+        max-width: (1 / 24 * $i * 100) * 1%;
+      }
+
+      @if ($i != 0) {
+        .s-col-#{$size}-offset-#{$i} {
+          margin-left: (1 / 24 * $i * 100) * 1%;
+        }
+      }
+    }
+  }
+}

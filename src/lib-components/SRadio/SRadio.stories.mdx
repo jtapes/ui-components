@@ -1,0 +1,170 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Canvas,
+} from '@storybook/addon-docs'
+import SRadio from '@/lib-components/SRadio/SRadio.vue'
+import results from '/.jest-test-results.json';
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Radio"
+  component={SRadio}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    label: { control: 'text' },
+    state: {
+      control: { type: 'select' },
+      options: [
+        'disabled',
+        'error',
+        'default',
+      ]
+    },
+    mode: {
+      options: [
+        'default',
+        'grid'
+      ],
+      control: { type: 'select' },
+    }
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-Market-UI-Kit?node-id=846%3A1100',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Radio button
+
+<Description of={SRadio} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SRadio },
+  template:
+    `
+    <div>
+      <div>
+        <s-radio v-model="selectedValue" checked-value="0" :mode="mode" :label="label" :state="state" @change="handleChange" />
+      </div>
+      <div>
+        <s-radio v-model="selectedValue" checked-value="1" :mode="mode" :label="label" :state="state" @change="handleChange" />
+      </div>
+    </div>
+`,
+	data() {
+		return {
+			selectedValue: null
+		}
+	},
+	methods: {
+		handleChange() {
+			action('change')()
+		}
+	}
+})
+
+export const GridTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SRadio },
+  template:
+    `
+    <div class="d-f">
+      <div>
+        <s-radio v-model="selectedValue" checked-value="0" :mode="mode" :label="label" :state="state" @change="handleChange" />
+      </div>
+      <div class="ml-40">
+        <s-radio v-model="selectedValue" checked-value="1" :mode="mode" :label="label" :state="state" @change="handleChange" />
+      </div>
+    </div>
+`,
+  data() {
+    return {
+      selectedValue: null
+    }
+  },
+  methods: {
+    handleChange() {
+      action('change')()
+    }
+  }
+})
+
+export const templateCustomLabel = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SRadio },
+  template:
+    `
+    <div class="d-f">
+      <s-radio v-model="selectedValue" checked-value="0" :mode="mode" :label="label" :state="state" @change="handleChange">
+        <div class="w-100 mt-4-n">
+          <p class="text-sb bold">Р/с: 40702810123450101230</p>
+          <p class="text-sm color-font-secondary">
+          Московский банк ПАО Сбербанк г. Москва <br/>
+          БИК: 044521234<br/>
+          К/с: 30101234500000000225
+          </p>
+        </div>
+      </s-radio>
+      <div class="ml-40">
+        <s-radio v-model="selectedValue" checked-value="1" :mode="mode" :label="label" :state="state" @change="handleChange">
+        <div class="w-100 mt-4-n">
+          <p class="text-sb bold">Р/с: 40702810123450101228</p>
+          <p class="text-sm color-font-secondary">
+          Московский банк ПАО Сбербанк г. Москва <br/>
+          БИК: 044521234<br/>
+          К/с: 30101234500000000225
+          </p>
+        </div>
+      </s-radio>
+      </div>
+    </div>
+`,
+  data() {
+    return {
+      selectedValue: null
+    }
+  },
+  methods: {
+    handleChange() {
+      action('change')()
+    }
+  }
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="SRadio" args={{ label: 'Radio' }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="SRadio (grid)" args={{ label: 'Radio', mode: 'grid' }}>
+    {GridTemplate.bind({})}
+  </Story>
+  <Story name="SRadio (custom label)" args={{ label: 'Radio', mode: 'grid' }}>
+    {templateCustomLabel.bind({})}
+  </Story>
+</Canvas>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <s-radio v-model="selectedValue" mode="default" label="Radio" :disabled="false" />
+  `}
+/>
+
+<ArgsTable of={SRadio} />

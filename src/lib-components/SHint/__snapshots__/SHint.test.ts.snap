@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SHint Is Vue snapshot 1`] = `
+<div
+  class="s-hint"
+>
+  <span>
+    Hover
+  </span>
+   
+  <div
+    class="s-hint__wrapper s-hint__wrapper--top-left"
+  >
+    <div
+      class="s-hint__header"
+    >
+       
+      <!---->
+    </div>
+     
+    <div
+      class="s-hint__content text-sm pt-16"
+    >
+      
+        Подсказка
+      
+    </div>
+  </div>
+</div>
+`;

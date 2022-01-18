@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SAutocomplete Is Vue snapshot 1`] = `
+<div
+  class="s-autocomplete s-autocomplete--rounded"
+>
+  <div
+    class="s-input s-input--text s-input--rounded"
+  >
+    <!---->
+     
+    <input
+      class="s-input__inner s-input__inner--appended"
+      type="text"
+    />
+     
+    <!---->
+     
+    <!---->
+     
+    <div
+      class="s-input__append"
+    >
+      <svg
+        class="svg-icon icon-32 svg-icon--search-24-32"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <use
+          href="#search-24-32"
+          xlink:href="#search-24-32"
+        />
+      </svg>
+    </div>
+  </div>
+   
+  <transition-stub
+    name="s-zoom-in-top"
+  >
+    <div
+      class="s-autocomplete-suggestions"
+      style="display: none;"
+    >
+      <div
+        class="s-autocomplete-suggestions__list"
+      >
+         
+        <div
+          class="s-autocomplete-suggestions__empty text-sm color-font-secondary"
+        >
+          
+          Ничего не найдено
+        
+        </div>
+      </div>
+    </div>
+  </transition-stub>
+</div>
+`;

@@ -1,0 +1,85 @@
+import {action} from '@storybook/addon-actions'
+import {config, withDesign} from 'storybook-addon-designs'
+import {withTests} from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Canvas,
+} from '@storybook/addon-docs/'
+import results from '/.jest-test-results.json';
+import SPagination from '@/lib-components/SPagination/SPagination'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Pagination"
+  component={SPagination}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    page: {
+      control: 'number',
+      defaultValue: 1,
+      description: 'Текущая страница',
+      type: 'Number'
+    },
+    pageCount: {
+      control: 'number',
+      defaultValue: 10,
+    },
+    pagerCount: {
+      control: 'number',
+      defaultValue: 5,
+    },
+    mobileMode: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-Market-UI-Kit?node-id=3019%3A1506',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+
+
+export const Template = (args, {argTypes}) => ({
+  props: Object.keys(argTypes),
+  components: {SPagination},
+  template: `<s-pagination :page="currentPage" @change="changePage" :pageCount="pageCount" :pagerCount="pagerCount" :mobileMode="mobileMode" />`,
+  data() {
+    return {
+      currentPage: this.page
+    }
+  },
+  watch: {
+    page(v) {
+      this.currentPage = v
+    }
+  },
+  methods: {
+    changePage(page) {
+      action('change')(page)
+      this.currentPage = page
+    },
+  },
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="SPagination">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Description of={SPagination} />
+<ArgsTable of={SPagination} />
+<Source code={`<s-pagination :page="1" :pageCount="10" :pagerCount="5" />`} />

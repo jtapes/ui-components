@@ -1,0 +1,35 @@
+cache:
+  key: "$CI_PROJECT_NAME"
+  paths:
+    - node_modules
+  policy: pull
+
+include:
+  - project: 'devops/ci-templates'
+    file:
+      - 'node/build.yml'
+      - 'node/test.yml'
+  - local: '.ci/*.yml'
+
+npm-build:storybook:
+  extends: .restricts
+  stage: build
+  script:
+    - npm run build:storybook
+  artifacts:
+    paths:
+      - storybook-static
+
+npm-publish:
+  stage: deploy
+  script:
+    - npm config set registry=$NPM_PPA_REGISTRY;
+    - login_cmd="echo -n '$PUBLISHER_USERNAME:$PUBLISHER_PASSWORD' | openssl base64"
+    - npm config set _auth=$(eval $login_cmd)
+    - npm config set always-auth=true
+    - npm config set email=build@localhost.com
+    - npm publish
+  only:
+    refs:
+      - main
+      - tags

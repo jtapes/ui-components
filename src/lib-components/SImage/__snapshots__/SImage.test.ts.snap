@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SImage Is Vue snapshot 1`] = `
+<div
+  class="s-image"
+>
+  <!---->
+   
+  <!---->
+   
+  <img
+    class="s-image__inner"
+    loading="eager"
+    src="/images/no-photo.svg"
+  />
+</div>
+`;

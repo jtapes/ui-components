@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SSort Is Vue snapshot 1`] = `
+<div
+  class="s-sort"
+>
+  
+  Сортировать
+  
+  <a
+    class="link d-f ai-c ml-24"
+    href="#"
+  >
+    
+    по цене
+    
+    <svg
+      class="svg-icon icon-16 ml-8 s-sort__icon svg-icon--sort-16 s-sort__icon--undefined"
+      style="display: none;"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <use
+        href="#sort-16"
+        xlink:href="#sort-16"
+      />
+    </svg>
+  </a>
+  <a
+    class="link d-f ai-c ml-24"
+    href="#"
+  >
+    
+    по количеству
+    
+    <svg
+      class="svg-icon icon-16 ml-8 s-sort__icon svg-icon--sort-16 s-sort__icon--undefined"
+      style="display: none;"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <use
+        href="#sort-16"
+        xlink:href="#sort-16"
+      />
+    </svg>
+  </a>
+  <a
+    class="link d-f ai-c ml-24"
+    href="#"
+  >
+    
+    по размеру
+    
+    <svg
+      class="svg-icon icon-16 ml-8 s-sort__icon svg-icon--sort-16 s-sort__icon--undefined"
+      style="display: none;"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <use
+        href="#sort-16"
+        xlink:href="#sort-16"
+      />
+    </svg>
+  </a>
+</div>
+`;

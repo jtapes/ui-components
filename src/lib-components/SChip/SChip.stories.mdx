@@ -1,0 +1,76 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Props,
+  Preview,
+} from '@storybook/addon-docs'
+import results from '/.jest-test-results.json';
+import SChip from '@/lib-components/SChip/SChip.vue'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Chip"
+  component={SChip}
+  decorators={[withDesign, withTests({results})]}
+  argTypes={{
+    label: { control: 'text' },
+    closable: { control: 'boolean' },
+    active: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    count: { control: 'number' },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-Market-UI-Kit?node-id=846%3A1195',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# Chip
+
+<Description of={SChip} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SChip },
+  template:
+    `<div style="display: inline-block">
+      <s-chip @close="handleClick" :label="label" :closable="closable" :active="active" :disabled="disabled" :count="count" />
+    </div>`,
+  methods: {
+    handleClick() {
+      action('close')()
+    }
+  }
+})
+
+<Preview withToolbar withSource="none">
+  <Story name="SChip" args={{ label: '18 мм', closable: false }}>
+    {Template.bind({})}
+  </Story>
+</Preview>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+    <s-chip closable>
+      18 мм
+    </s-chip>
+  `}
+/>
+
+<ArgsTable of={SChip} />

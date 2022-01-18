@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SInfo Is Vue snapshot 1`] = `
+<div
+  class="s-info s-info--success"
+>
+  <div
+    class="s-info__icon"
+  >
+    <svg
+      class="svg-icon icon-16 svg-icon--checked-16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <use
+        href="#checked-16"
+        xlink:href="#checked-16"
+      />
+    </svg>
+  </div>
+   
+  <div
+    class="text-sm"
+  >
+    Test
+  </div>
+</div>
+`;

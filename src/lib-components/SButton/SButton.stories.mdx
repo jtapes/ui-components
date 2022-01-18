@@ -1,0 +1,281 @@
+import { action } from '@storybook/addon-actions'
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest'
+import {
+  Meta,
+  Story,
+  Source,
+  Canvas,
+  ArgsTable,
+  Description,
+} from '@storybook/addon-docs'
+import SButton from '@/lib-components/SButton/SButton.vue'
+import SvgIcon from '@/lib-components/SvgIcon/SvgIcon.vue'
+import { SvgMdxArgType } from '@/storybook/components/icon/SvgIconArgType'
+
+import results from '/.jest-test-results.json'
+
+<Meta
+  title="DESIGN SYSTEM/Atom/Button"
+  component={SButton}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    content: { control: 'text', defaultValue: 'В корзину' },
+    state: {
+      control: { type: 'select' },
+      options: [
+        'disabled',
+        'active',
+        'default'
+      ]
+    },
+    append: SvgMdxArgType,
+    prepend: SvgMdxArgType,
+    icon: SvgMdxArgType,
+    type: {
+      options: ['button', 'submit', 'reset'],
+      control: { type: 'select', defaultValue: 'button' },
+    },
+    mode: {
+      options: ['default', 'outline', 'link', 'icon', 'favorite', 'grid'],
+      control: { type: 'select', defaultValue: 'default' },
+    },
+    circle: { control: 'boolean', defaultValue: false },
+    size: {
+      options: [
+        'xs',
+        'sm',
+        'md',
+      ],
+      control: { type: 'select' },
+      defaultValue: 'md',
+    },
+    rounded: { control: 'boolean', defaultValue: true },
+    badge: { control: 'text' },
+    inverse: { control: 'boolean', defaultValue: false },
+    onClick: { action: 'clicked' },
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-Market-UI-Kit?node-id=3449%3A2819',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SButton, SvgIcon },
+  template: `
+    <s-button
+      :state="state"
+      :content="content"
+      :append="append"
+      :prepend="prepend"
+      :icon="icon"
+      :type="type"
+      :mode="mode"
+      :circle="circle"
+      :size="size"
+      :rounded="rounded"
+      :badge="badge"
+      :inverse="inverse"
+      :onClick="clickme">
+      <template v-if="icon">
+        <svg-icon :name="icon" class="icon-32" />
+      </template>
+      <template v-else>
+        <span>{{ content }}</span>
+      </template>
+      <template #prepend v-if="prepend">
+        <svg-icon :name="prepend" class="icon-32" />
+      </template>
+      <template #append v-if="append">
+        <svg-icon :name="append" :class="append === 'plus-16' ? 'icon-16' : 'icon-32'" />
+      </template>
+    </s-button>
+  `,
+  methods: {
+    clickme() {
+      action('button-click')()
+    },
+  },
+})
+
+export const InverseTemplate = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SButton, SvgIcon },
+  template: `
+    <div style="background-color: #002F6C; padding: 40px;">
+      <s-button
+      :state="state"
+      :content="content"
+      :append="append"
+      :prepend="prepend"
+      :icon="icon"
+      :type="type"
+      :mode="mode"
+      :circle="circle"
+      :size="size"
+      :rounded="rounded"
+      :badge="badge"
+      :inverse="inverse"
+      :onClick="clickme">
+        <template v-if="icon">
+          <svg-icon :name="icon" class="icon-32" />
+        </template>
+        <template v-else>
+          <span>{{ content }}</span>
+        </template>
+        <template #prepend v-if="prepend">
+          <svg-icon :name="prepend" class="icon-32" />
+        </template>
+        <template #append v-if="append">
+          <svg-icon :name="append" class="icon-32" />
+        </template>
+      </s-button>
+    </div>
+  `,
+  methods: {
+    clickme() {
+      action('button-click')()
+    },
+  },
+})
+
+# Кнопка
+
+<Description />
+
+<Canvas withToolbar withSource="none">
+  <Story name="SButton (default)">
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="SButton (outline)"
+    args={{
+      mode: 'outline',
+      append: 'arrow-24-32'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story name="SButton (default inverse)" args={{ inverse: true }}>
+    {InverseTemplate.bind({})}
+  </Story>
+  <Story
+    name="SButton (outline inverse)"
+    args={{
+      mode: 'outline',
+      append: 'arrow-24-32',
+      inverse: true
+    }}
+  >
+    {InverseTemplate.bind({})}
+  </Story>
+  <Story
+    name="SButton (link)"
+    args={{
+      mode: 'link',
+      content: 'Кнопка',
+      append: 'arrow-24-32'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="SButton (icon)"
+    args={{
+      mode: 'icon',
+      append: null,
+      icon: 'heart-24-32'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="SButton (favorite)"
+    args={{
+      mode: 'favorite',
+      append: null,
+      icon: 'heart-24-32',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="SButton (default small)"
+    args={{
+      content: 'Подписаться',
+      append: null,
+      size: 'sm'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="SButton (link small)"
+    args={{
+      mode: 'link',
+      content: 'Показать ещё',
+      append: 'plus-16',
+      size: 'sm'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="SButton (grid)"
+    args={{
+      rounded: false,
+      mode: 'grid',
+      content: 'Очистить все фильтры',
+      append: 'close-24-32'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="SButton (add to basket)"
+    args={{
+      append: 'plus-24-32',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="SButton (show more)"
+    args={{
+      content: 'Показать ещё',
+      mode: 'outline',
+      append: 'plus-24-32',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Пример
+
+<Source
+  language="html"
+  code={`
+<s-button mode="icon" @click.native="clickme" circle size="sm" :badge="1">
+  <template #prepend>
+    <svg-icon name="burger-24-32" />
+  </template>
+  <svg-icon name="heart-24-32" />
+  <template #append>
+    <svg-icon name="plus-24-32" />
+  </template>
+</s-button>
+  `}
+/>
+
+<ArgsTable />

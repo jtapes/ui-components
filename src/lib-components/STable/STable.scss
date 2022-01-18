@@ -1,0 +1,49 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-table {
+  &.el-table {
+    td {
+      .cell {
+        color: $color--font;
+      }
+
+      .s-table-column {
+        padding: $size--16 0;
+
+        &__action {
+          border: none;
+          padding: 0;
+          background-color: transparent;
+          opacity: 0;
+          transition: $animate--time;
+        }
+      }
+    }
+
+    th.s-table-column {
+      padding: $size--8 0;
+
+      .cell {
+        color: $color--primary;
+      }
+    }
+
+    &.el-table--enable-row-hover {
+      .el-table__body {
+        tr:hover > td {
+          .s-table-column__action {
+            opacity: 1;
+          }
+
+          &.s-table-column {
+            background-color: $color--complimentary-bg-light;
+          }
+        }
+      }
+    }
+  }
+}

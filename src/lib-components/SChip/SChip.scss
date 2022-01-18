@@ -1,0 +1,80 @@
+@import '../../theme/styles/variables';
+@import '../../theme/styles/mixins';
+@import '../../theme/styles/reset';
+@import '../../theme/styles/fonts';
+@import '../../theme/styles/global';
+
+.s-chip {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  border-radius: $size--24;
+  height: $size--48;
+  color: $color--primary;
+  background-color: $color--background;
+  transition: $animate--time;
+  cursor: pointer;
+
+  &__content {
+    display: flex;
+    padding: 0 $size--20;
+  }
+
+  &__text {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 164px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__count {
+    margin-left: $size--12;
+    color: $color--font-muted;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: $size--8;
+    border-radius: 50%;
+    width: $size--32;
+    height: $size--32;
+    color: $color--primary;
+    background-color: $color--white;
+  }
+
+  &:not(&--disabled, &--closable):hover {
+    color: $color--primary-accent;
+    background-color: $color--complimentary-bg-light;
+  }
+
+  &--active {
+    color: $color--white;
+    background-color: $color--primary-dark;
+  }
+
+  &--disabled {
+    color: $color--border;
+    background-color: $color--background;
+    pointer-events: none;
+  }
+
+  &--closable {
+    .s-chip__content {
+      padding-right: 0;
+      padding-left: $size--20;
+    }
+
+    &:hover {
+      box-shadow: 0 0 1px 1px $color--border;
+      background-color: $color--white;
+
+      .s-chip__close {
+        color: $color--primary-accent;
+        background-color: $color--complimentary-bg-light;
+      }
+    }
+  }
+}

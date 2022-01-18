@@ -1,0 +1,327 @@
+/* Font */
+@mixin font($size: 16px,  $line-height: 20px, $letter-spacing: -0.02em, $weight: 400) {
+  margin: 0;
+  font-family: $font;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+/* Adaptive */
+@mixin responsive($key, $map: $breakpoints-map) {
+  @if map-has-key($map, $key) {
+    @media screen and #{unquote(map-get($map, $key))} {
+      @content;
+    }
+  } @else {
+    @warn 'Not found key `#{$key}` in map `#{$map}`';
+  }
+}
+
+/* Colors */
+@mixin color($name, $color) {
+  .bg-#{$name} {
+    background-color: $color !important;  /* stylelint-disable-line declaration-no-important */
+  }
+  .color-#{$name} {
+    color: $color !important;  /* stylelint-disable-line declaration-no-important */
+  }
+}
+
+/* Text */
+@mixin h1 {
+  @include font(32px, 36px, -0.02em, 400);
+}
+@mixin h2 {
+  @include font(28px, 32px, -0.02em, 400);
+}
+@mixin h3 {
+  @include font(24px, 32px, -0.02em, 400);
+}
+@mixin h4 {
+  @include font(20px, 28px, -0.02em, 400);
+}
+
+@mixin text {
+  @include font(16px, 20px, -0.02em, 400);
+}
+@mixin text-xs {
+  @include font(12px, 16px, -0.02em, 400);
+}
+@mixin text-sm {
+  @include font(14px, 20px, -0.02em, 400);
+}
+@mixin text-xl {
+  @include font(44px, 48px, -0.02em, 600);
+}
+
+/* z-index map */
+@mixin z-index($key) {
+  z-index: map-get($z-index, $key);
+}
+
+/* Margins / Paddings */
+/* stylelint-disable declaration-no-important */ /* Нужно перекрывать всевозможные стили, поэтому important */
+@mixin sizes-classes($screen-name: '') {
+  .mt#{$screen-name}-auto {
+    margin-top: auto !important;
+  }
+  .mr#{$screen-name}-auto {
+    margin-right: auto !important;
+  }
+  .mb#{$screen-name}-auto {
+    margin-bottom: auto !important;
+  }
+  .ml#{$screen-name}-auto {
+    margin-left: auto !important;
+  }
+  .mx#{$screen-name}-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+  .my#{$screen-name}-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+
+  @each $index, $size in $sizes {
+    .m#{$screen-name}-#{$index} {
+      margin: $size !important;
+    }
+    .mx#{$screen-name}-#{$index} {
+      margin-right: $size !important;
+      margin-left: $size !important;
+    }
+    .my#{$screen-name}-#{$index} {
+      margin-top: $size !important;
+      margin-bottom: $size !important;
+    }
+    .ml#{$screen-name}-#{$index} {
+      margin-left: $size !important;
+    }
+    .mr#{$screen-name}-#{$index} {
+      margin-right: $size !important;
+    }
+    .mt#{$screen-name}-#{$index} {
+      margin-top: $size !important;
+    }
+    .mb#{$screen-name}-#{$index} {
+      margin-bottom: $size !important;
+    }
+
+    .m#{$screen-name}-#{$index}-n {
+      margin: -$size !important;
+    }
+    .mx#{$screen-name}-#{$index}-n {
+      margin-right: -$size !important;
+      margin-left: -$size !important;
+    }
+    .my#{$screen-name}-#{$index}-n {
+      margin-top: -$size !important;
+      margin-bottom: -$size !important;
+    }
+    .ml#{$screen-name}-#{$index}-n {
+      margin-left: -$size !important;
+    }
+    .mr#{$screen-name}-#{$index}-n {
+      margin-right: -$size !important;
+    }
+    .mt#{$screen-name}-#{$index}-n {
+      margin-top: -$size !important;
+    }
+    .mb#{$screen-name}-#{$index}-n {
+      margin-bottom: -$size !important;
+    }
+
+    .p#{$screen-name}-#{$index} {
+      padding: $size !important;
+    }
+    .px#{$screen-name}-#{$index} {
+      padding-right: $size !important;
+      padding-left: $size !important;
+    }
+    .py#{$screen-name}-#{$index} {
+      padding-top: $size !important;
+      padding-bottom: $size !important;
+    }
+    .pl#{$screen-name}-#{$index} {
+      padding-left: $size !important;
+    }
+    .pr#{$screen-name}-#{$index} {
+      padding-right: $size !important;
+    }
+    .pt#{$screen-name}-#{$index} {
+      padding-top: $size !important;
+    }
+    .pb#{$screen-name}-#{$index} {
+      padding-bottom: $size !important;
+    }
+  }
+}
+
+/* Global classes */
+@mixin project-classes($screen-name: '') {
+  .d#{$screen-name}-b {
+    display: block !important;
+  }
+  .d#{$screen-name}-n {
+    display: none !important;
+  }
+  .d#{$screen-name}-f {
+    display: flex !important;
+  }
+  .d#{$screen-name}-if {
+    display: inline-flex !important;
+  }
+
+  .fw#{$screen-name}-w {
+    flex-wrap: wrap !important;
+  }
+  .fw#{$screen-name}-n {
+    flex-wrap: nowrap !important;
+  }
+
+  .fd#{$screen-name}-c {
+    flex-direction: column !important;
+  }
+  .fd#{$screen-name}-r {
+    flex-direction: row !important;
+  }
+
+  .fb#{$screen-name}-100 {
+    flex-basis: 100% !important;
+  }
+  .fb#{$screen-name}-50 {
+    flex-basis: 50% !important;
+  }
+  .fb#{$screen-name}-33 {
+    flex-basis: 33.33333% !important;
+  }
+
+  .fg#{$screen-name}-0 {
+    flex-grow: 0 !important;
+  }
+  .fg#{$screen-name}-1 {
+    flex-grow: 1 !important;
+  }
+
+  .fs#{$screen-name}-0 {
+    flex-shrink: 0 !important;
+  }
+
+  .ai#{$screen-name}-c {
+    align-items: center !important;
+  }
+  .ai#{$screen-name}-fs {
+    align-items: flex-start !important;
+  }
+  .ai#{$screen-name}-fe {
+    align-items: flex-end !important;
+  }
+
+  .as#{$screen-name}-fs {
+    align-self: flex-start !important;
+  }
+  .as#{$screen-name}-fe {
+    align-self: flex-end !important;
+  }
+  .as#{$screen-name}-c {
+    align-self: center !important;
+  }
+
+  .jc#{$screen-name}-fs {
+    justify-content: flex-start !important;
+  }
+  .jc#{$screen-name}-fe {
+    justify-content: flex-end !important;
+  }
+  .jc#{$screen-name}-c {
+    justify-content: center !important;
+  }
+  .jc#{$screen-name}-sb {
+    justify-content: space-between !important;
+  }
+
+  .bg#{$screen-name}-n {
+    background: none !important;
+  }
+
+  .br#{$screen-name}-n {
+    border: none !important;
+  }
+
+  .w#{$screen-name}-25 {
+    width: 25% !important;
+  }
+  .w#{$screen-name}-50 {
+    width: 50% !important;
+  }
+  .w#{$screen-name}-100 {
+    width: 100% !important;
+  }
+
+  .h#{$screen-name}-25 {
+    height: 25% !important;
+  }
+  .h#{$screen-name}-50 {
+    height: 50% !important;
+  }
+  .h#{$screen-name}-100 {
+    height: 100% !important;
+  }
+
+  .td#{$screen-name}-lt {
+    text-decoration: line-through !important;
+  }
+  .td#{$screen-name}-ul {
+    text-decoration: underline !important;
+  }
+  .td#{$screen-name}-n {
+    text-decoration: none !important;
+  }
+
+  .ta#{$screen-name}-r {
+    text-align: right !important;
+  }
+  .ta#{$screen-name}-l {
+    text-align: left !important;
+  }
+  .ta#{$screen-name}-c {
+    text-align: center !important;
+  }
+
+  .wb#{$screen-name}-bw {
+    word-break: break-word !important;
+  }
+  .wb#{$screen-name}-ba {
+    word-break: break-all !important;
+  }
+  .wb#{$screen-name}-ka {
+    word-break: keep-all !important;
+  }
+  .wb#{$screen-name}-n {
+    word-break: normal !important;
+  }
+}
+
+@mixin scrollbar() {
+  scrollbar-color: $color--font-muted #fff;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: map-get($sizes, 8);
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    outline: 1px solid $color--white;
+    border-radius: map-get($sizes, 4);
+    background-color: $color--font-muted;
+
+    &:hover {
+      background-color: $color--font-secondary;
+    }
+  }
+}
+/* stylelint-enable declaration-no-important */

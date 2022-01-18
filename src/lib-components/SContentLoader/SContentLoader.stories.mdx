@@ -1,0 +1,100 @@
+import { config, withDesign } from 'storybook-addon-designs'
+import { withTests } from '@storybook/addon-jest';
+import {
+  Meta,
+  Story,
+  ArgsTable,
+  Description,
+  Source,
+  Canvas,
+} from '@storybook/addon-docs'
+import SContentLoader from '@/lib-components/SContentLoader/SContentLoader.vue'
+import results from '/.jest-test-results.json';
+
+<Meta
+  title="DESIGN SYSTEM/Atom/ContentLoader"
+  component={SContentLoader}
+  decorators={[withDesign, withTests({ results })]}
+  argTypes={{
+    width: { number: 'number'},
+    height: { number: 'number'},
+    primaryColor: {control: 'text', defaultValue: '#f4f4F4'},
+    secondaryColor: {control: 'text', defaultValue: '#d9e2ec'},
+    primaryOpacity: {number: 'number', defaultValue: 1},
+    secondaryOpacity: {number: 'number', defaultValue: 0},
+    speed: {number: 'number'},
+    baseUrl: {control: 'text'},
+    animate: {control: 'boolean', defaultValue: true},
+    uniqueKey: {control: 'text'}
+  }}
+  parameters={{
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/IIeFkxNoHGcaqNHlVeNrhW/MVP-3-Market-UI-Kit?node-id=846%3A1100',
+    }),
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  }}
+/>
+
+# SContentLoader
+
+<Description of={SContentLoader} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SContentLoader },
+  template:
+    `<SContentLoader :width="width" :height="height" :primaryColor="primaryColor" :secondaryColor="secondaryColor" :primaryOpacity="primaryOpacity"
+:secondaryOpacity="secondaryOpacity" :speed="speed" :animate="animate" :uniqueKey="uniqueKey"></SContentLoader>`
+})
+
+export const TemplateChips = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { SContentLoader },
+  template:
+    `<SContentLoader :width="width" :height="height" :primaryColor="primaryColor" :secondaryColor="secondaryColor"
+:primaryOpacity="primaryOpacity" :secondaryOpacity="secondaryOpacity" :speed="speed" :animate="animate" :uniqueKey="uniqueKey">
+      <rect x="0" y="0" rx="24" ry="24" width="200" height="48" />
+      <rect x="212" y="0" rx="24" ry="24" width="200" height="48" />
+      <rect x="424" y="0" rx="24" ry="24" width="200" height="48" />
+      <rect x="636" y="0" rx="24" ry="24" width="200" height="48" />
+    </SContentLoader>`
+})
+
+<Canvas withToolbar withSource="none">
+  <Story name="SContentLoader" args={{  }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="SContentLoaderChips" args={{  }}>
+    {TemplateChips.bind({})}
+  </Story>
+</Canvas>
+
+## Дефолтный пример
+
+<Source
+  language="html"
+  code={`
+    <s-content-loader />
+  `}
+/>
+
+## Пример для тегов
+
+<Source
+  language="html"
+  code={`
+    <s-content-loader width="850" height="48">
+      <rect x="0" y="0" rx="24" ry="24" width="200" height="48" />
+      <rect x="212" y="0" rx="24" ry="24" width="200" height="48" />
+      <rect x="424" y="0" rx="24" ry="24" width="200" height="48" />
+      <rect x="636" y="0" rx="24" ry="24" width="200" height="48" />
+    </s-content-loader>
+  `}
+/>
+<ArgsTable of={SContentLoader} />

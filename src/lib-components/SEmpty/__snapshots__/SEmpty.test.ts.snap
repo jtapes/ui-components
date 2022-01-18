@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SEmpty Is Vue snapshot 1`] = `
+<div
+  class="s-empty"
+>
+  <div
+    class="s-empty__title"
+  >
+    <span
+      class="text-xl color-font-muted"
+    >
+      
+        Нет подходящих товаров
+      
+    </span>
+  </div>
+   
+  <div
+    class="s-empty__description"
+  >
+    
+      Попробуйте изменить условия в фильтрах
+    
+  </div>
+   
+  <div
+    class="s-empty__content"
+  >
+    <button
+      class="s-button s-button--outline s-button--md s-button--rounded"
+      type="button"
+    >
+      <!---->
+       
+      <div
+        class="s-button__content"
+      >
+        
+            Очистить фильтр
+            
+      </div>
+       
+      <!---->
+       
+      <div
+        class="s-button__append"
+      >
+        <div
+          class="mock-component icon-32"
+          name="close-24-32"
+        />
+      </div>
+    </button>
+  </div>
+</div>
+`;

@@ -1,0 +1,21 @@
+@font-face {
+  src: url('#{$font--path}/Grtsk-Peta-Regular-Latin-Cyrillic-Severstal.ttf') format('truetype');
+  src: url('#{$font--path}/Grtsk-Peta-Regular-Latin-Cyrillic-Severstal.otf') format('opentype');
+  src: url('#{$font--path}/Grtsk-Peta-Regular-Latin-Cyrillic-Severstal.woff') format('woff');
+  src: url('#{$font--path}/Grtsk-Peta-Regular-Latin-Cyrillic-Severstal.woff2') format('woff2');
+  font-family: 'Grtsk-Peta';
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src: url('#{$font--path}/Grtsk-Peta-Semibold-Latin-Cyrillic-Severstal.ttf') format('truetype');
+  src: url('#{$font--path}/Grtsk-Peta-Semibold-Latin-Cyrillic-Severstal.otf') format('opentype');
+  src: url('#{$font--path}/Grtsk-Peta-Semibold-Latin-Cyrillic-Severstal.woff') format('woff');
+  src: url('#{$font--path}/Grtsk-Peta-Semibold-Latin-Cyrillic-Severstal.woff2') format('woff2');
+  font-family: 'Grtsk-Peta';
+  font-weight: 600 800;
+  font-style: normal;
+  font-display: swap;
+}
